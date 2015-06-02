@@ -15,7 +15,7 @@
   (let [payload {:text message
                  :username username
                  :icon_emoji emoji
-                 :channel channel}]
+                 :channel (str "#" channel)}]
     (client/post slack-url {:content-type :json
                             :form-params payload})))
 
