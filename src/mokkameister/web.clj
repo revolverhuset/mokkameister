@@ -1,13 +1,13 @@
 (ns mokkameister.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [ring.adapter.jetty :as jetty]
-            [ring.middleware.stacktrace :refer [wrap-stacktrace]]
-            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
-            [environ.core :refer [env]]
+  (:require [cheshire.core :as json]
             [clojure.pprint :refer [pprint]]
-            [cheshire.core :as json]
+            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [environ.core :refer [env]]
             [mokkameister.slack :as slack]
-            [mokkameister.util :refer [parse-int]]))
+            [mokkameister.util :refer [parse-int]]
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
+            [ring.middleware.stacktrace :refer [wrap-stacktrace]]))
 
 (defn- coffee-message-starting [user minutes]
   (format "God nyhendnad folket! %s starta nett kaffitraktaren, kaffi om %d minuttar!" user minutes))
