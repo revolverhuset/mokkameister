@@ -12,4 +12,5 @@
                  [clj-http "1.1.2"]]
   :plugins [[lein-environ "1.0.0"]]
   :hooks [environ.leiningen.hooks]
+  :min-lein-version "2.0.0"
   :uberjar-name "kaffitraktar-standalone.jar")
