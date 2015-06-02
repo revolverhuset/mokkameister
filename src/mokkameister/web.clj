@@ -19,14 +19,16 @@
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" user))
 
 (defn handle-instant-coffee [params]
-  (slack/notify (coffee-message-instant (:user_name params))))
+  (let [channel (:channel_name params)]
+    (slack/notify (coffee-message-instant (:user_name params)) :channel channel)))
 
 (defn handle-regular-coffee [params]
   (let [time (or (parse-int (:text params)) 5)
         time-ms (* time 1000 60)
-        user (:user_name params)]
-    (slack/notify (coffee-message-starting user time))
-    (slack/delayed-notify time-ms (coffee-message-finished user))))
+        user (:user_name params)
+        channel (:channel_name params)]
+    (slack/notify (coffee-message-starting user time) :channel channel)
+    (slack/delayed-notify time-ms (coffee-message-finished user) :channel channel)))
 
 (defn handle-slack-coffee [params]
   (if (= (:text params) "instant")
