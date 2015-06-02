@@ -6,10 +6,6 @@ Kaffe-bot til revolverhuset slack, samt backend for kaffemaskin/knapp.
 
 [mokkaheroku]: https://mokkameister.herokuapp.com
 
-## Usage
-
-FIXME
-
 ## License
 
 Copyright © 2015 Revolverhuset
