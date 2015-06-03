@@ -34,7 +34,7 @@
 
 (defn parse-slack-coffee-event [{:keys [channel_id text user_name]}]
   (let [event {:channel channel_id
-               :user user_name}]
+               :user    user_name}]
     (if (= text "instant")
       (assoc event :coffee-type :instant)
       (let [time    (or (parse-int text) 5)
