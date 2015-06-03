@@ -7,6 +7,7 @@
                  [clj-http "1.1.2"]
                  [compojure "1.1.8"]
                  [environ "1.0.0"]
+                 [liberator "0.13"]
                  [org.clojure/clojure "1.6.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [ring/ring-defaults "0.1.5"]

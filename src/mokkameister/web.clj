@@ -3,6 +3,7 @@
             [clojure.pprint :refer [pprint]]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [environ.core :refer [env]]
+            [liberator.core :refer [resource defresource]]
             [mokkameister.slack :as slack]
             [mokkameister.util :refer [parse-int]]
             [ring.adapter.jetty :as jetty]
@@ -18,43 +19,53 @@
 (defn coffee-message-instant [user]
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" user))
 
-(defn handle-instant-coffee [params]
-  (let [channel (:channel_name params)]
-    (slack/notify (coffee-message-instant (:user_name params)) :channel channel)))
 
-(defn handle-regular-coffee [params]
-  (let [time (or (parse-int (:text params)) 5)
-        time-ms (* time 1000 60)
-        user (:user_name params)
-        channel (:channel_name params)]
-    (slack/notify (coffee-message-starting user time) :channel channel)
-    (slack/delayed-notify time-ms (coffee-message-finished user) :channel channel)))
+(defmulti handle-slack-coffee :coffee-type)
 
-(defn handle-slack-coffee [params]
-  (if (= (:text params) "instant")
-    (handle-instant-coffee params)
-    (handle-regular-coffee params))
-  {:status 200
-   :body ""})
+(defmethod handle-slack-coffee :instant [{:keys [user channel]}]
+  (let [msg (coffee-message-instant user)]
+    (slack/notify msg :channel channel)))
+
+(defmethod handle-slack-coffee :regular [{:keys [user channel time time-ms]}]
+  (let [now-msg   (coffee-message-starting user time)
+        later-msg (coffee-message-finished user)]
+    (slack/notify now-msg :channel channel)
+    (slack/delayed-notify time-ms later-msg :channel channel)))
+
+
+(defn parse-slack-coffee-event [{:keys [channel_id text token user_name]}]
+  (let [event {:channel channel_id
+               :token token
+               :user user_name}]
+    (if (= text "instant")
+      (assoc event :coffee-type :instant)
+      (let [time (or (parse-int text) 5)
+            time-ms (* time 1000 60)]
+        (assoc event :coffee-type :regular, :time time, :time-ms time-ms)))))
+
+(defresource slack-coffee
+  :available-media-types ["text/plain"]
+  :allowed-methods [:post]
+  :post! (fn [{{:keys [params]} :request}]
+           (-> params
+               parse-slack-coffee-event
+               handle-slack-coffee) ""))
 
 (defroutes app
-  (POST "/slack-coffee" req
-        (handle-slack-coffee (:params req)))
-  (GET "/" []
-       {:status 200
-        :headers {"Content-Type" "text/plain"}
-        :body "Brillekake"}))
+  (ANY "/slack-coffee" [] slack-coffee)
+  (GET "/" [] {:status 200, :body "Brillekake"}))
 
 (defn wrap-middlewares [app]
   (-> app
-      wrap-stacktrace
+      ;; wrap-stacktrace
       (wrap-defaults api-defaults)))
-
-(def handler (-> app wrap-middlewares))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (wrap-middlewares #'app) {:port port :join? false})))
+
+;; Lein ring handler
+(def handler (-> app wrap-middlewares))
 
 ;; Dev:
 (comment
