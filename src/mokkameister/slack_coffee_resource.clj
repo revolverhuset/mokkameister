@@ -32,9 +32,8 @@
     (slack/delayed-notify time-ms later-msg :channel channel)))
 
 
-(defn parse-slack-coffee-event [{:keys [channel_id text token user_name]}]
+(defn parse-slack-coffee-event [{:keys [channel_id text user_name]}]
   (let [event {:channel channel_id
-               :token token
                :user user_name}]
     (if (= text "instant")
       (assoc event :coffee-type :instant)
