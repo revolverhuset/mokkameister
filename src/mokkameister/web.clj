@@ -50,6 +50,8 @@
       wrap-stacktrace
       (wrap-defaults api-defaults)))
 
+(def handler (-> app wrap-middlewares))
+
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty (wrap-middlewares #'app) {:port port :join? false})))

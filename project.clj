@@ -12,7 +12,9 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]]
-  :plugins [[lein-environ "1.0.0"]]
+  :plugins [[lein-environ "1.0.0"]
+            [lein-ring "0.9.4"]]
+  :ring {:handler mokkameister.web/handler}
   :hooks [environ.leiningen.hooks]
   :min-lein-version "2.0.0"
   :profiles {:uberjar {:main mokkameister.web, :aot :all}}
