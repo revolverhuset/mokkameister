@@ -37,7 +37,7 @@
                :user user_name}]
     (if (= text "instant")
       (assoc event :coffee-type :instant)
-      (let [time (or (parse-int text) 5)
+      (let [time    (or (parse-int text) 5)
             time-ms (* time 1000 60)]
         (assoc event :coffee-type :regular, :time time, :time-ms time-ms)))))
 

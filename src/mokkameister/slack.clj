@@ -12,10 +12,10 @@
               :or {channel  "#testroompleaseignore"
                    emoji    ":coffee:"
                    username "Mokkameister 9000"}}]
-  (let [payload {:text message
-                 :username username
+  (let [payload {:text       message
+                 :username   username
                  :icon_emoji emoji
-                 :channel channel}]
+                 :channel    channel}]
     (client/post slack-url {:content-type :json
                             :form-params payload})))
 
