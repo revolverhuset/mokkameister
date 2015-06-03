@@ -2,6 +2,7 @@
   (:require [cheshire.core :as json]
             [clojure.pprint :refer [pprint]]
             [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+            [compojure.route :as route]
             [environ.core :refer [env]]
             [liberator.core :refer [resource defresource]]
             [mokkameister.slack-coffee-resource :refer [slack-coffee]]
@@ -11,10 +12,15 @@
 
 (defroutes app
   (ANY "/slack-coffee" [] slack-coffee)
-  (GET "/" [] {:status 200, :body "Brillekake"}))
+  (route/resources "/"))
+
+(defn wrap-dir-index [handler]
+  (fn [req]
+    (handler (update-in req [:uri] #(if (= "/" %) "/index.html" %)))))
 
 (defn wrap-middlewares [app]
   (-> app
+      (wrap-dir-index)
       (wrap-defaults api-defaults)))
 
 (defn -main [& [port]]
