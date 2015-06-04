@@ -8,6 +8,7 @@
             [mokkameister.slack-coffee-resource :refer [slack-coffee]]
             [mokkameister.coffee-status-resource :refer [coffee-status coffee-stats]]
             [ring.adapter.jetty :as jetty]
+            [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [ring.middleware.stacktrace :refer [wrap-stacktrace]]))
 
@@ -24,7 +25,9 @@
 (defn wrap-middlewares [app]
   (-> app
       (wrap-dir-index)
-      (wrap-defaults api-defaults)))
+      (wrap-defaults api-defaults)
+      (wrap-cors :access-control-allow-origin [#".*"]
+                 :access-control-allow-methods [:get :put :post :delete])))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]

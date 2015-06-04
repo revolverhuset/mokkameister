@@ -11,6 +11,7 @@
                  [liberator "0.13"]
                  [org.clojure/clojure "1.6.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [ring-cors "0.1.7"]
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]]
