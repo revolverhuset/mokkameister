@@ -5,6 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[cheshire "5.3.1"]
                  [clj-http "1.1.2"]
+                 [clj-time "0.9.0"]
                  [compojure "1.1.8"]
                  [environ "1.0.0"]
                  [liberator "0.13"]
