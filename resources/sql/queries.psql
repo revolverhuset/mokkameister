@@ -32,7 +32,30 @@ ORDER BY created DESC
 LIMIT 1
 
 -- name: coffee-type-stats
-SELECT  count(*)
-FROM    brewings
-WHERE   "coffee-type" = :coffee_type
-AND     created >= NOW() - :interval::INTERVAL
+SELECT
+    (SELECT count(*)
+     FROM brewings
+     WHERE created >= DATE(NOW())
+     AND "coffee-type" = :coffee_type) as today,
+    (SELECT count(*)
+     FROM brewings
+     WHERE created BETWEEN DATE(NOW()) - 2 AND DATE(NOW())
+     AND "coffee-type" = :coffee_type) as yesterday,
+    (SELECT count(*)
+     FROM brewings
+     WHERE created >= date_trunc('week', NOW())
+     AND "coffee-type" = :coffee_type) as thisweek,
+    (SELECT count(*)
+     FROM brewings
+     WHERE created BETWEEN date_trunc('week', NOW() - INTERVAL '1 week')
+     AND date_trunc('week', NOW())
+     AND "coffee-type" = :coffee_type) as lastweek,
+    (SELECT count(*)
+     FROM brewings
+     WHERE created >= date_trunc('month', NOW())
+     AND "coffee-type" = :coffee_type) as thismonth,
+    (SELECT count(*)
+     FROM brewings
+     WHERE created BETWEEN date_trunc('month', NOW() - INTERVAL '1 month')
+     AND date_trunc('month', NOW())
+     AND "coffee-type" = :coffee_type) as lastmonth
