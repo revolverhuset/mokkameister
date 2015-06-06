@@ -1,8 +1,8 @@
 <stats>
     <ul>
-        <li>I dag: { data.stats.today }</li>
-        <li>Denne uken: { data.stats.week }</li>
-        <li>Denne mnd: { data.stats.month }</li>
+        <li>I dag: { data.day.regular }</li>
+        <li>Denne uken: { data.week.regular }</li>
+        <li>Denne mnd: { data.month.regular }</li>
     </ul>
 
     this.data = {}

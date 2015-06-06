@@ -1,5 +1,5 @@
 <status>
-    <div>Siste brygg: { new Date(data.lastbrew.time).toLocaleString() } av { data.lastbrew.by }.</div>
+    <div>Siste brygg: { new Date(data.latest.regular.created).toLocaleString() } av { data.latest.regular['slack-user'] }.</div>
 
     this.data = {}
 
