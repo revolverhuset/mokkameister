@@ -1,0 +1,20 @@
+-- name: create-brewings-table!
+CREATE TABLE brewings (
+       id SERIAL PRIMARY KEY,
+       "slack-user" VARCHAR(128) NOT NULL,
+       "brew-time" INTEGER NOT NULL,
+       "coffee-type" VARCHAR(50) NOT NULL,
+       created TIMESTAMP NOT NULL DEFAULT (now() at time zone 'utc')
+)
+
+-- name: drop-brewings-table!
+DROP TABLE brewings
+
+-- name: insert-brewing<!
+INSERT INTO brewings ("slack-user", "brew-time", "coffee-type") VALUES (:slack_user, :brew_time, :coffee_type)
+
+-- name: find-brewing-by-id
+SELECT * FROM brewings WHERE id = :id LIMIT 1
+
+-- name: find-latest-brewings
+SELECT * FROM brewings ORDER BY created DESC LIMIT 20

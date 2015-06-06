@@ -1,6 +1,7 @@
 (ns mokkameister.slack-coffee-resource
   (:require [liberator.core :refer [defresource]]
             [mokkameister.slack :as slack]
+            [mokkameister.persistence :refer [persist-brew!]]
             [mokkameister.system :refer [system]]
             [mokkameister.util :refer [parse-int]]))
 
@@ -18,10 +19,12 @@
 (defmulti handle-slack-coffee :coffee-type)
 
 (defmethod handle-slack-coffee :instant [{:keys [channel] :as event}]
+  (persist-brew! event)
   (let [msg (coffee-message-instant event)]
     (slack/notify msg :channel channel)))
 
 (defmethod handle-slack-coffee :regular [{:keys [channel time-ms] :as event}]
+  (persist-brew! event)
   (let [now-msg   (coffee-message-starting event)
         later-msg (coffee-message-finished event)]
     (slack/notify now-msg :channel channel)
