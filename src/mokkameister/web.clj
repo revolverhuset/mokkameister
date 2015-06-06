@@ -1,16 +1,12 @@
 (ns mokkameister.web
-  (:require [cheshire.core :as json]
-            [clojure.pprint :refer [pprint]]
-            [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
+  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
-            [environ.core :refer [env]]
-            [liberator.core :refer [resource defresource]]
-            [mokkameister.slack-coffee-resource :refer [slack-coffee]]
             [mokkameister.coffee-status-resource :refer [coffee-status coffee-stats]]
+            [mokkameister.slack-coffee-resource :refer [slack-coffee]]
+            [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.cors :refer [wrap-cors]]
-            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
-            [ring.middleware.stacktrace :refer [wrap-stacktrace]]))
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
 (defroutes app
   (ANY "/slack-coffee" [] slack-coffee)
@@ -30,7 +26,7 @@
                  :access-control-allow-methods [:get :put :post :delete])))
 
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))]
+  (let [port (Integer. (or port (system :web-port)))]
     (jetty/run-jetty (wrap-middlewares #'app) {:port port :join? false})))
 
 ;; Lein ring handler

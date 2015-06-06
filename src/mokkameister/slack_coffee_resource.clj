@@ -1,13 +1,8 @@
 (ns mokkameister.slack-coffee-resource
-  (:require [environ.core :refer [env]]
-            [liberator.core :refer [resource defresource]]
+  (:require [liberator.core :refer [defresource]]
             [mokkameister.slack :as slack]
+            [mokkameister.system :refer [system]]
             [mokkameister.util :refer [parse-int]]))
-
-(def ^:private slack-trigger-token
-  (or (env :slack-trigger-token)
-      (throw (Exception. "Missing SLACK_TRIGGER_TOKEN environment variable"))))
-
 
 (defn- coffee-message-starting [user minutes]
   (format "God nyhendnad folket! %s starta nett kaffitraktaren, kaffi om %d minuttar!" user minutes))
@@ -43,7 +38,7 @@
 
 (defn valid-slack-token? [ctx]
   (let [token (get-in ctx [:request :params :token])]
-    (= token slack-trigger-token)))
+    (= token (system :slack-token))))
 
 (defresource slack-coffee
   :available-media-types ["text/plain"]
