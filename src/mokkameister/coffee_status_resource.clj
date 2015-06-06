@@ -4,23 +4,22 @@
             [clj-time.core :as t :refer [hours ago]]
             [clj-time.format :as f]
             [clj-time.coerce :as c :refer [to-date]]
-            [liberator.core :refer [resource defresource]]))
+            [liberator.core :refer [resource defresource]]
+            [mokkameister.persistence :refer [find-latest-brewings latest-brews brew-stats]]
+            [mokkameister.system :refer [system]]))
 
-(defn- dummy-status [_]
-  {:lastbrew {:time (-> 2 hours ago to-date)
-              :by "stian"}})
+(defn- status [_]
+  {:latest (latest-brews (system :db))})
 
-(defn- dummy-stats [_]
-  {:stats {:today 1
-           :week  5
-           :month 21}})
+(defn- stats [_]
+  (brew-stats (system :db)))
 
 (defresource coffee-status
   :available-media-types ["application/json"]
   :allowed-methods [:get]
-  :handle-ok (comp json/generate-string dummy-status))
+  :handle-ok (comp json/generate-string status))
 
 (defresource coffee-stats
   :available-media-types ["application/json"]
   :allowed-methods [:get]
-  :handle-ok (comp json/generate-string dummy-stats))
+  :handle-ok (comp json/generate-string stats))

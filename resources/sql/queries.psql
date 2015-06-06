@@ -18,3 +18,21 @@ SELECT * FROM brewings WHERE id = :id LIMIT 1
 
 -- name: find-latest-brewings
 SELECT * FROM brewings ORDER BY created DESC LIMIT 20
+
+-- name: find-last-regular-coffee
+SELECT * FROM brewings
+WHERE "coffee-type" = 'regular'
+ORDER BY created DESC
+LIMIT 1
+
+-- name: find-last-instant-coffee
+SELECT * FROM brewings
+WHERE "coffee-type" = 'instant'
+ORDER BY created DESC
+LIMIT 1
+
+-- name: coffee-type-stats
+SELECT  count(*)
+FROM    brewings
+WHERE   "coffee-type" = :coffee_type
+AND     created >= NOW() - :interval::INTERVAL
