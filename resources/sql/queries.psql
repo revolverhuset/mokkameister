@@ -58,4 +58,7 @@ SELECT
      FROM brewings
      WHERE created BETWEEN date_trunc('month', NOW() - INTERVAL '1 month')
      AND date_trunc('month', NOW())
-     AND "coffee-type" = :coffee_type) as lastmonth
+     AND "coffee-type" = :coffee_type) as lastmonth,
+    (SELECT count(*)
+     FROM brewings
+     WHERE "coffee-type" = :coffee_type) as total

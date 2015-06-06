@@ -6,6 +6,7 @@
         <p>Sist uke: { data.regular.lastweek }</p>
         <p>Denne mnd: { data.regular.thismonth }</p>
         <p>Sist mnd: { data.regular.lastmonth }</p>
+        <p>Totalt: { data.regular.total }</p>
     </div>
 
     this.data = null;
