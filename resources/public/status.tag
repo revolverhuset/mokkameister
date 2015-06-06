@@ -1,12 +1,9 @@
 <status>
-    <div>
-        <p>Siste brygg:</p>
-        <p>{ new Date(data.latest.regular.created).toLocaleString() }</p>
-        <p>Av:</p>
-        <p>{ data.latest.regular['slack-user'] }</p>
+    <div show={ data }>
+        <p>Siste brygg blei laga <b>{ moment(data.latest.regular.created, moment.ISO_8601).fromNow() }</b>, av { data.latest.regular['slack-user'] }.</p>
     </div>
 
-    this.data = {}
+    this.data = null;
 
     load() {
         var self = this
