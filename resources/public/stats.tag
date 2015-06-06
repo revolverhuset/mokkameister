@@ -1,9 +1,9 @@
 <stats>
-    <ul>
-        <li>I dag: { data.day.regular }</li>
-        <li>Denne uken: { data.week.regular }</li>
-        <li>Denne mnd: { data.month.regular }</li>
-    </ul>
+    <div>
+    <p>I dag: { data.day.regular }</p>
+    <p>Denne uke: { data.week.regular }</p>
+    <p>Denne mnd: { data.month.regular }</p>
+    </div>
 
     this.data = {}
 

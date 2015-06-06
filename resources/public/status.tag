@@ -1,5 +1,10 @@
 <status>
-    <div>Siste brygg: { new Date(data.latest.regular.created).toLocaleString() } av { data.latest.regular['slack-user'] }.</div>
+    <div>
+        <p>Siste brygg:</p>
+        <p>{ new Date(data.latest.regular.created).toLocaleString() }</p>
+        <p>Av:</p>
+        <p>{ data.latest.regular['slack-user'] }</p>
+    </div>
 
     this.data = {}
 
