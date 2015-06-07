@@ -2,13 +2,23 @@
   "Incoming webhooks from slack"
   (:require [liberator.core :refer [defresource]]
             [mokkameister.slack :as slack]
-            [mokkameister.db.persistence :refer [persist-brew!]]
+            [mokkameister.db.persistence :refer [persist-brew! brew-stats]]
             [mokkameister.system :refer [system]]
             [mokkameister.util :refer [parse-int]]))
 
-(defn- coffee-message-starting [{:keys [slack-user brew-time]}]
-  (format "God nyhendnad folket! %s starta nett kaffitraktaren, kaffi om %d minuttar!"
-          slack-user brew-time))
+(def ^:private msg-coffee-count
+  {0 "Dagens fyrste kaffi! "
+   1 "No er det snart kaffi igjen, "
+   2 "Kaffi no igjen? "
+   3 "Eg gir meg ende øve, fjerde kaffien i dag? "
+   4 "Femte gong? "})
+
+(def ^:private mokkameister-link
+  "<https://mokkameister.herokuapp.com/|Mokkameister>")
+
+(defn- coffee-message-starting [{:keys [slack-user brew-time]} today-count]
+  (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar! - %s"
+          (msg-coffee-count today-count "") slack-user brew-time mokkameister-link))
 
 (defn- coffee-message-finished [{:keys [slack-user]}]
   (format "Det er kaffi å få på kjøken! @%s" slack-user))
@@ -25,9 +35,10 @@
     (slack/notify msg :channel channel)))
 
 (defmethod handle-slack-coffee :regular [{:keys [channel time-ms] :as event}]
-  (persist-brew! event)
-  (let [now-msg   (coffee-message-starting event)
-        later-msg (coffee-message-finished event)]
+  (let [today-count (get-in (brew-stats (system :db)) [:regular :today])
+        now-msg     (coffee-message-starting event today-count)
+        later-msg   (coffee-message-finished event)]
+    (persist-brew! event)
     (slack/notify now-msg :channel channel)
     (slack/delayed-notify time-ms later-msg :channel channel)))
 
