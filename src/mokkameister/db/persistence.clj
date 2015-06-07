@@ -1,4 +1,4 @@
-(ns mokkameister.persistence
+(ns mokkameister.db.persistence
   (:require [mokkameister.system :refer [system]]
             [yesql.core :refer [defqueries]]))
 

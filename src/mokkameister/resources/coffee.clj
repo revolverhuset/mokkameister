@@ -1,11 +1,8 @@
-(ns mokkameister.coffee-status-resource
-  (:require [environ.core :refer [env]]
-            [cheshire.core :as json]
-            [clj-time.core :as t :refer [hours ago]]
-            [clj-time.format :as f]
-            [clj-time.coerce :as c :refer [to-date]]
-            [liberator.core :refer [resource defresource]]
-            [mokkameister.persistence :refer [find-latest-brewings latest-brews brew-stats]]
+(ns mokkameister.resources.coffee
+  "API for web page (status / stats)"
+  (:require [cheshire.core :as json]
+            [liberator.core :refer [defresource]]
+            [mokkameister.db.persistence :refer [latest-brews brew-stats]]
             [mokkameister.system :refer [system]]))
 
 (defn- status [_]

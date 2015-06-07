@@ -1,8 +1,8 @@
 (ns mokkameister.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
-            [mokkameister.coffee-status-resource :refer [coffee-status coffee-stats]]
-            [mokkameister.slack-coffee-resource :refer [slack-coffee]]
+            [mokkameister.resources.coffee :refer [coffee-status coffee-stats]]
+            [mokkameister.resources.slack :refer [slack-coffee]]
             [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.cors :refer [wrap-cors]]

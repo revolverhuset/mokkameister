@@ -1,7 +1,8 @@
-(ns mokkameister.slack-coffee-resource
+(ns mokkameister.resources.slack
+  "Incoming webhooks from slack"
   (:require [liberator.core :refer [defresource]]
             [mokkameister.slack :as slack]
-            [mokkameister.persistence :refer [persist-brew!]]
+            [mokkameister.db.persistence :refer [persist-brew!]]
             [mokkameister.system :refer [system]]
             [mokkameister.util :refer [parse-int]]))
 
