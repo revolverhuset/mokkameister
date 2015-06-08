@@ -39,7 +39,7 @@ SELECT
      AND "coffee-type" = :coffee_type) as today,
     (SELECT count(*)
      FROM brewings
-     WHERE created BETWEEN DATE(NOW()) - 2 AND DATE(NOW())
+     WHERE created BETWEEN DATE(NOW()) - 1 AND DATE(NOW())
      AND "coffee-type" = :coffee_type) as yesterday,
     (SELECT count(*)
      FROM brewings
