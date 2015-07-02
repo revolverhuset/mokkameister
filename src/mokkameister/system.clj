@@ -14,6 +14,10 @@
   (or (env :slack-token)
       (throw (Exception. "Missing SLACK_TOKEN environment variable"))))
 
+(defn- button-token []
+  (or (env :button-token)
+      (throw (Exception. "Missing BUTTON_TOKEN environment variable"))))
+
 (defn- web-port []
   (or (env :port)
       5000))
@@ -23,4 +27,5 @@
    {:db (db-spec)
     :slack-url (slack-url)
     :slack-token (slack-token)
-    :web-port (web-port)}))
+    :web-port (web-port)
+    :button-token (button-token)}))

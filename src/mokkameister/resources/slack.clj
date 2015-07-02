@@ -20,8 +20,8 @@
   (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar! - %s"
           (msg-coffee-count today-count "") slack-user brew-time mokkameister-link))
 
-(defn- coffee-message-finished [{:keys [slack-user]}]
-  (format "Det er kaffi å få på kjøken! @%s" slack-user))
+(defn- coffee-message-finished []
+  (format "Det er kaffi å få på kjøken!"))
 
 (defn- coffee-message-instant [{:keys [slack-user]}]
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" slack-user))
@@ -37,7 +37,7 @@
 (defmethod handle-slack-coffee :regular [{:keys [channel time-ms] :as event}]
   (let [today-count (get-in (brew-stats (system :db)) [:regular :today])
         now-msg     (coffee-message-starting event today-count)
-        later-msg   (coffee-message-finished event)]
+        later-msg   (coffee-message-finished)]
     (persist-brew! event)
     (slack/notify now-msg :channel channel)
     (slack/delayed-notify time-ms later-msg :channel channel)))
@@ -64,3 +64,24 @@
            (-> params
                parse-slack-coffee-event
                handle-slack-coffee) ""))
+
+(defn valid-button-token? [ctx]
+  (let [token (get-in ctx [:request :params :secret])]
+    (= token (system :button-token))))
+
+(defn handle-button-post [ctx]
+  ;; Just produce a faux slack /coffee event map for now..
+  (let [event {:channel "#penthouse"
+               :slack-user "nokon"
+               :time-ms (* 5 1000 60)
+               :brew-time 5
+               :coffee-type :regular}]
+    (prn event)
+    (handle-slack-coffee event))
+  "OK")
+
+(defresource coffee-button
+  :available-media-types ["text/plain"]
+  :allowed-methods [:post]
+  :authorized? valid-button-token?
+  :post! handle-button-post)

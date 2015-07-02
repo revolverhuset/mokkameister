@@ -2,7 +2,7 @@
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
             [compojure.route :as route]
             [mokkameister.resources.coffee :refer [coffee-status coffee-stats]]
-            [mokkameister.resources.slack :refer [slack-coffee]]
+            [mokkameister.resources.slack :refer [slack-coffee coffee-button]]
             [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.cors :refer [wrap-cors]]
@@ -12,6 +12,8 @@
   (ANY "/slack-coffee" [] slack-coffee)
   (ANY "/status" [] coffee-status)
   (ANY "/stats" [] coffee-stats)
+  (ANY "/coffee-button" [] coffee-button)
+  (ANY "/coffee-button/" [] coffee-button)
   (route/resources "/"))
 
 (defn wrap-dir-index [handler]
