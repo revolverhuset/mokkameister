@@ -9,7 +9,7 @@
                  [compojure "1.1.8"]
                  [environ "1.0.0"]
                  [liberator "0.13"]
-                 [org.clojure/clojure "1.6.0"]
+                 [org.clojure/clojure "1.7.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/java.jdbc "0.3.7"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
