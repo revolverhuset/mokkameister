@@ -1,7 +1,7 @@
 (ns mokkameister.slack
-  (:require [mokkameister.system :refer [system]]
-            [clj-http.client :as client]
-            [clojure.core.async :refer [go timeout <!]]))
+  (:require [clj-http.client :as client]
+            [clojure.core.async :refer [<! go timeout]]
+            [mokkameister.system :refer [system]]))
 
 (defn notify
   "Send message to slack. Optional arguments: channel, emoji, username."

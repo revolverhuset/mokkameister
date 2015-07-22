@@ -1,12 +1,15 @@
 (ns mokkameister.web
-  (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.route :as route]
-            [mokkameister.resources.coffee :refer [coffee-status coffee-stats]]
-            [mokkameister.resources.slack :refer [slack-coffee coffee-button]]
+  (:require [compojure
+             [core :refer [ANY defroutes]]
+             [route :as route]]
+            [mokkameister.resources
+             [coffee :refer [coffee-stats coffee-status]]
+             [slack :refer [coffee-button slack-coffee]]]
             [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
-            [ring.middleware.cors :refer [wrap-cors]]
-            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
+            [ring.middleware
+             [cors :refer [wrap-cors]]
+             [defaults :refer [api-defaults wrap-defaults]]]))
 
 (defroutes app
   (ANY "/slack-coffee" [] slack-coffee)

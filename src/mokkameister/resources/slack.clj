@@ -1,10 +1,11 @@
 (ns mokkameister.resources.slack
   "Incoming webhooks from slack"
   (:require [liberator.core :refer [defresource]]
-            [mokkameister.slack :as slack]
-            [mokkameister.db.persistence :refer [persist-brew! brew-stats]]
-            [mokkameister.system :refer [system]]
-            [mokkameister.util :refer [parse-int]]))
+            [mokkameister
+             [slack :as slack]
+             [system :refer [system]]
+             [util :refer [parse-int]]]
+            [mokkameister.db.persistence :refer [brew-stats persist-brew!]]))
 
 (def ^:private msg-coffee-count
   {0 "Dagens fyrste kaffi! "

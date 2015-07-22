@@ -2,7 +2,7 @@
   "API for web page (status / stats)"
   (:require [cheshire.core :as json]
             [liberator.core :refer [defresource]]
-            [mokkameister.db.persistence :refer [latest-brews brew-stats]]
+            [mokkameister.db.persistence :refer [brew-stats latest-brews]]
             [mokkameister.system :refer [system]]))
 
 (defn- status [_]
