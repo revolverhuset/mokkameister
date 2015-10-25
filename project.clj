@@ -48,7 +48,7 @@
           :figwheel true
           :compiler {:output-to     "resources/public/js/app.js"
                      :output-dir    "resources/public/js/out"
-                     :source-map    "resources/public/js/app.js.map"
+                     :source-map    true
                      :optimizations :none
                      :pretty-print  true}}
 
