@@ -6,6 +6,7 @@
   :dependencies [[cheshire "5.3.1"]
                  [clj-http "1.1.2"]
                  [clj-time "0.9.0"]
+                 [cljs-ajax "0.5.1"]
                  [compojure "1.1.8"]
                  [environ "1.0.0"]
                  [liberator "0.13"]
@@ -19,8 +20,7 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [yesql "0.5.1"]
-                 [cljs-ajax "0.5.1"]]
+                 [yesql "0.5.1"]]
 
   :plugins [[lein-environ "1.0.0"]
             [lein-ring "0.9.4"]
@@ -30,8 +30,6 @@
   :ring {:handler mokkameister.web/handler
          :uberwar-name "mokkameister.war"}
 
-  :hooks [environ.leiningen.hooks]
-
   :min-lein-version "2.5.0"
 
   :source-paths ["src/clj" "src/cljc"]
@@ -40,23 +38,31 @@
                                     [:cljsbuild :builds :app :compiler :output-dir]
                                     [:cljsbuild :builds :app :compiler :output-to]]
 
-  :profiles {:uberjar {:main mokkameister.web
-                       :env {:production true}
-                       :aot :all}
+  :profiles {:dev {:plugins []
+                   :env {:dev true}
+                   :cljsbuild {:builds
+                               {:app
+                                {:figwheel true
+                                 :compiler {:source-map "app.js.map"
+                                            :optimizations :none
+                                            :pretty-print  true}}}}}
 
-             :dev {:dependencies []
-                   :plugins []
-                   :env {:dev true}}}
+             :uberjar {:main mokkameister.web
+                       :env {:production true}
+                       :omit-source true
+                       :aot :all
+                       :hooks [leiningen.cljsbuild]
+                       :cljsbuild {:jar true
+                                   :builds
+                                   {:app
+                                    {:compiler {:optimizations :advanced
+                                                :pretty-print false}}}}}}
 
   :uberjar-name "mokkameister-standalone.jar"
 
-  :cljsbuild {:builds [{:id "dev"
-                        :source-paths ["src/cljs" "src/cljc"]
-                        :figwheel true
-                        :compiler {:output-to     "resources/public/js/app.js"
-                                   :output-dir    "resources/public/js/out"
-                                   :asset-path    "js/out"
-                                   :optimizations :none
-                                   :pretty-print  true}
-                        }] }
+  :cljsbuild {:builds {:app {:source-paths ["src/cljs" "src/cljc"]
+                             :compiler {:output-to     "resources/public/js/app.js"
+                                        ;;:output-dir    "resources/public/js/out"
+                                        ;;:asset-path    "js/out"
+                                        }}}}
   )
