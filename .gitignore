@@ -11,3 +11,7 @@ pom.xml.asc
 .hg/
 /profiles.clj
 /dev-db.edn
+/resources/public/js/out
+/resources/public/js/app.js
+/figwheel_server.log
+/.idea
