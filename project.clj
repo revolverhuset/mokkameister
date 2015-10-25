@@ -30,39 +30,37 @@
   :ring {:handler mokkameister.web/handler
          :uberwar-name "mokkameister.war"}
 
+  :main mokkameister.web
+
   :min-lein-version "2.5.0"
 
   :source-paths ["src/clj" "src/cljc"]
 
   :clean-targets ^{:protect false} [:target-path
-                                    [:cljsbuild :builds :app :compiler :output-dir]
-                                    [:cljsbuild :builds :app :compiler :output-to]]
-
-  :profiles {:dev {:plugins []
-                   :env {:dev true}
-                   :cljsbuild {:builds
-                               {:app
-                                {:figwheel true
-                                 :compiler {:source-map "app.js.map"
-                                            :optimizations :none
-                                            :pretty-print  true}}}}}
-
-             :uberjar {:main mokkameister.web
-                       :env {:production true}
-                       :omit-source true
-                       :aot :all
-                       :hooks [leiningen.cljsbuild]
-                       :cljsbuild {:jar true
-                                   :builds
-                                   {:app
-                                    {:compiler {:optimizations :advanced
-                                                :pretty-print false}}}}}}
+                                    [:cljsbuild :builds :dev :compiler :output-dir]
+                                    [:cljsbuild :builds :dev :compiler :output-to]]
 
   :uberjar-name "mokkameister-standalone.jar"
 
-  :cljsbuild {:builds {:app {:source-paths ["src/cljs" "src/cljc"]
-                             :compiler {:output-to     "resources/public/js/app.js"
-                                        ;;:output-dir    "resources/public/js/out"
-                                        ;;:asset-path    "js/out"
-                                        }}}}
+  :cljsbuild
+  {:builds
+   {:dev {:source-paths ["src/cljs" "src/cljc"]
+          :figwheel true
+          :compiler {:output-to     "resources/public/js/app.js"
+                     :output-dir    "resources/public/js/out"
+                     :source-map    "resources/public/js/app.js.map"
+                     :optimizations :none
+                     :pretty-print  true}}
+
+    :uberjar {:source-paths ["src/cljs" "src/cljc"]
+              :jar true
+              :compiler {:output-to      "resources/public/js/app.js"
+                         :pretty-print   false
+                         :optimizations  :advanced}}}}
+
+  :profiles {:dev {:env {:dev true}}
+             :uberjar {:env {:production true}
+                       :omit-source true
+                       :aot :all
+                       :prep-tasks ["compile" ["cljsbuild" "once" "uberjar"]]}}
   )
