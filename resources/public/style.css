@@ -1,7 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Press+Start+2P&subset=latin-ext);
 
 body {
-    background: cyan;
-    font-family: "Chewy", sans-serif;
+    background: lime;
+    font-family: 'Press Start 2P', cursive;
     text-align: center;
     color: #001f3f;
 }
