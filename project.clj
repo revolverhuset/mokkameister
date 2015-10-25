@@ -49,6 +49,7 @@
           :compiler {:output-to     "resources/public/js/app.js"
                      :output-dir    "resources/public/js/out"
                      :source-map    true
+                     :source-map-timestamp true
                      :optimizations :none
                      :pretty-print  true}}
 
