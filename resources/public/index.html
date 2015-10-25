@@ -59,7 +59,15 @@
   <img src="http://code.divshot.com/geo-bootstrap/img/test/counter2.gif">
 
   <script>
-    goog.require("mokkameister.core");
+   // Load via google closure if in dev mode
+   if (typeof variable !== 'goog') {
+     goog.require("mokkameister.core");
+   }
+  </script>
+
+  <script>
+   // Launch main system for great greatness!
+   mokkameister.core.main();
   </script>
 
 </body>

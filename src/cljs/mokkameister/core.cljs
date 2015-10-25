@@ -49,8 +49,7 @@
          [:p (str description ": " (get stats line))])])
     (loading-gif)))
 
-
-(do
+(defn ^:export main []
   (reagent/render-component [status] (.getElementById js/document "status"))
   (reagent/render-component [stats] (.getElementById js/document "stats"))
-  (println "Reloaded!"))
+  (println "Running!"))
