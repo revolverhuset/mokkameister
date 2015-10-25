@@ -8,7 +8,7 @@
                  [clj-time "0.9.0"]
                  [cljs-ajax "0.5.1"]
                  [compojure "1.1.8"]
-                 [environ "1.0.0"]
+                 [environ "1.0.1"]
                  [liberator "0.13"]
                  [org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.145" :scope "provided"]
@@ -22,7 +22,7 @@
                  [ring/ring-jetty-adapter "1.2.2"]
                  [yesql "0.5.1"]]
 
-  :plugins [[lein-environ "1.0.0"]
+  :plugins [[lein-environ "1.0.1"]
             [lein-ring "0.9.4"]
             [lein-figwheel "0.4.1"]
             [lein-cljsbuild "1.1.0"]]
