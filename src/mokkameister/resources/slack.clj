@@ -36,7 +36,7 @@
     (slack/notify msg :channel channel)))
 
 (defmethod handle-slack-coffee :regular [{:keys [channel time-ms] :as event}]
-  (let [today-count (get-in (brew-stats (system :db)) [:regular :today])
+  (let [today-count (get-in (brew-stats) [:regular :today])
         now-msg     (coffee-message-starting event today-count)
         later-msg   (coffee-message-finished)]
     (persist-brew! event)

@@ -2,14 +2,13 @@
   "API for web page (status / stats)"
   (:require [cheshire.core :as json]
             [liberator.core :refer [defresource]]
-            [mokkameister.db.persistence :refer [brew-stats latest-brews]]
-            [mokkameister.system :refer [system]]))
+            [mokkameister.db.persistence :refer [brew-stats latest-brews]]))
 
 (defn- status [_]
-  {:latest (latest-brews (system :db))})
+  {:latest (latest-brews)})
 
 (defn- stats [_]
-  (brew-stats (system :db)))
+  (brew-stats))
 
 (defresource coffee-status
   :available-media-types ["application/json"]

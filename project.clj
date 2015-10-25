@@ -17,7 +17,7 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [yesql "0.4.2"]]
+                 [yesql "0.5.1"]]
   :plugins [[lein-environ "1.0.0"]
             [lein-ring "0.9.4"]]
   :ring {:handler mokkameister.web/handler}
