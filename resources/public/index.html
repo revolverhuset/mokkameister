@@ -14,47 +14,54 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
 
   <title>Mokkameister 9000</title>
+  <link rel="stylesheet" href="dist/css/bootstrap.css">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
-  <h1>Mokkameister 9000</h1>
 
-  <h3>Kaffistatus</h3>
-  <div id="status"></div>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <a class="brand" href="/">Mokkameister 9000</a>
+      </div>
+    </div>
+  </div>
 
-  <br>
+  <div class="container-narrow">
+    <div class="jumbotron">
+      <h1>Mokkameister 9000</h1>
+      <p class="lead" id="status"></p>
+    </div>
 
-  <h3>Kaffistats</h3>
-  <div id="stats"></div>
+    <div class="row-fluid">
+      <div class="col-sm-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Statistikk</h3>
+          </div>
+          <div class="panel-body"></div>
+          <span id="stats"></span>
+        </div>
+      </div>
+    </div>
 
-  <br>
+    <div class="row-fluid">
+      <div class="col-sm-12">
+        <div class="alert alert-info text-center"">
+          <strong>OBS!</strong> Nettbestilling kommer snart!
+        </div>
+      </div>
+    </div>
 
-  <video class="video" preload="auto" autoplay="autoplay" loop="loop">
-    <source src="https://blog.eikeland.se/images/2015-coffeebutton/snurr.webm" type="video/webm">
-    <source src="https://blog.eikeland.se/images/2015-coffeebutton/snurr.mp4" type="video/mp4">
-  </video>
+  </div>
 
-  <br><br>
-  <h3>Nettbestilling kommer snart!</h3>
-  <br>
-
-  <img src="http://media.giphy.com/media/234DP7Z8KgTgA/giphy.gif">
-  <img src="http://media.giphy.com/media/FcOliejmZ6nVS/giphy.gif">
-  <img src="http://media.giphy.com/media/VMiZStmM4tRAs/giphy.gif">
-
-  <br>
-  <hr>
-
-  <img src="http://code.divshot.com/geo-bootstrap/img/test/ie_logo.gif">
-  <img src="http://code.divshot.com/geo-bootstrap/img/test/ns_logo.gif">
-  <img src="http://code.divshot.com/geo-bootstrap/img/test/noframes.gif">
-  <img src="http://code.divshot.com/geo-bootstrap/img/test/notepad.gif">
-
-  <hr>
-
-  <img src="http://code.divshot.com/geo-bootstrap/img/test/counter2.gif">
+  <!-- <div class="container"> -->
+  <!--   <video class="video" preload="auto" autoplay="autoplay" loop="loop"> -->
+  <!--     <source src="https://blog.eikeland.se/images/2015-coffeebutton/snurr.webm" type="video/webm"> -->
+  <!--     <source src="https://blog.eikeland.se/images/2015-coffeebutton/snurr.mp4" type="video/mp4"> -->
+  <!--   </video> -->
+  <!-- </div> -->
 
   <script type="text/javascript" src="js/out/goog/base.js"></script>
   <script type="text/javascript" src="js/app.js"></script>

@@ -44,9 +44,16 @@
                       :thismonth "Denne månaden"
                       :lastmonth "Forrige månad"
                       :total "Totalt"}]
-      [:div
-       (for [[line description] stat-lines]
-         [:p (str description ": " (get stats line))])])
+      [:table.table
+       [:thead
+        [:tr
+         [:th "Periode"]
+         [:th "Antall"]]]
+       [:tbody
+        (for [[line description] stat-lines]
+          [:tr
+           [:td description]
+           [:td (get stats line)]])]])
     (loading-gif)))
 
 (do
