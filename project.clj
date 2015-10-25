@@ -19,11 +19,13 @@
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.2.2"]
-                 [yesql "0.5.1"]]
+                 [yesql "0.5.1"]
+                 [cljs-ajax "0.5.1"]]
 
-  :plugins [[lein-cljsbuild "1.1.0"]
-            [lein-environ "1.0.0"]
-            [lein-ring "0.9.4"]]
+  :plugins [[lein-environ "1.0.0"]
+            [lein-ring "0.9.4"]
+            [lein-figwheel "0.4.1"]
+            [lein-cljsbuild "1.1.0"]]
 
   :ring {:handler mokkameister.web/handler
          :uberwar-name "mokkameister.war"}
@@ -40,14 +42,21 @@
 
   :profiles {:uberjar {:main mokkameister.web
                        :env {:production true}
-                       :aot :all}}
+                       :aot :all}
+
+             :dev {:dependencies []
+                   :plugins []
+                   :env {:dev true}}}
 
   :uberjar-name "mokkameister-standalone.jar"
 
-  :cljsbuild {:builds {:app {:source-paths ["src/cljs" "src/cljc"]
-                             :compiler {:output-to     "resources/public/js/app.js"
-                                        :output-dir    "resources/public/js/out"
-                                        :asset-path   "js/out"
-                                        :optimizations :none
-                                        :pretty-print  true}}}}
+  :cljsbuild {:builds [{:id "dev"
+                        :source-paths ["src/cljs" "src/cljc"]
+                        :figwheel true
+                        :compiler {:output-to     "resources/public/js/app.js"
+                                   :output-dir    "resources/public/js/out"
+                                   :asset-path    "js/out"
+                                   :optimizations :none
+                                   :pretty-print  true}
+                        }] }
   )
