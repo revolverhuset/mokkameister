@@ -10,6 +10,7 @@
     <script>html5.addElements('status stats')</script>
   <![endif]-->
 
+  <script src="//js.pusher.com/3.0/pusher.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
 
   <title>Mokkameister 9000</title>
@@ -34,6 +35,12 @@
     <div class="jumbotron">
       <h1>Mokkameister 9000</h1>
       <p class="lead" id="last-brew"></p>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-sm-12">
+        <div id="alarm"></div>
+      </div>
     </div>
 
     <div class="row-fluid">

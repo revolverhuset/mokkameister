@@ -49,7 +49,6 @@
           :figwheel true
           :compiler {:output-to     "resources/public/js/app.js"
                      :output-dir    "resources/public/js/out"
-                     :externs       ["resources/public/js-externs/moment-externs.js"]
                      :source-map    true
                      :source-map-timestamp true
                      :optimizations :none
@@ -58,7 +57,8 @@
     :uberjar {:source-paths ["src/cljs" "src/cljc"]
               :jar true
               :compiler {:output-to      "resources/public/js/app.js"
-                         :externs        ["resources/public/js-externs/moment-externs.js"]
+                         :externs        ["resources/public/js-externs/moment-externs.js"
+                                          "resources/public/js-externs/pusher-externs.js"]
                          :pretty-print   false
                          :optimizations  :advanced}}}}
 

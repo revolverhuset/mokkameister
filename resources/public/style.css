@@ -30,3 +30,34 @@ body {
     font-size: 24px;
     line-height: 1.25;
 }
+
+
+.alarm {
+    margin-top: -30px;
+    margin-bottom: 40px;
+    border: 2px solid #ff5555;
+}
+
+
+blink, .blink {
+  -webkit-animation: blink 1s step-end infinite;
+  -moz-animation: blink 1s step-end infinite;
+  -o-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+  67% { opacity: 0 }
+}
+
+@-moz-keyframes blink {
+  67% { opacity: 0 }
+}
+
+@-o-keyframes blink {
+  67% { opacity: 0 }
+}
+
+@keyframes blink {
+  67% { opacity: 0 }
+}
