@@ -2,6 +2,7 @@
   "Incoming webhooks from slack"
   (:require [liberator.core :refer [defresource]]
             [mokkameister
+             [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
              [util :refer [parse-int]]]
@@ -18,8 +19,8 @@
   "<https://mokkameister.herokuapp.com/|Mokkameister>")
 
 (defn- coffee-message-starting [{:keys [slack-user brew-time]} today-count]
-  (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar! - %s"
-          (msg-coffee-count today-count "") slack-user brew-time mokkameister-link))
+  (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar!"
+          (msg-coffee-count today-count "") slack-user brew-time))
 
 (defn- coffee-message-finished []
   (format "Det er kaffi å få på kjøken!"))
@@ -40,9 +41,9 @@
         now-msg     (coffee-message-starting event today-count)
         later-msg   (coffee-message-finished)]
     (persist-brew! event)
-    (slack/notify now-msg :channel channel)
-    (slack/delayed-notify time-ms later-msg :channel channel)))
-
+    (pusher/push! "coffee" "coffee" now-msg)
+    (slack/notify (str now-msg " - " mokkameister-link) :channel channel)
+    (slack/delayed-notify time-ms (str later-msg " - " mokkameister-link) :channel channel)))
 
 (defn parse-slack-coffee-event [{:keys [channel_id text user_name]}]
   (let [event {:channel    channel_id

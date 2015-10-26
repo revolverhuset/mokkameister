@@ -10,6 +10,7 @@
     <script>html5.addElements('status stats')</script>
   <![endif]-->
 
+  <script src="//js.pusher.com/3.0/pusher.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
 
   <title>Mokkameister 9000</title>
@@ -38,6 +39,12 @@
 
     <div class="row-fluid">
       <div class="col-sm-12">
+        <div id="alarm"></div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="col-sm-12">
         <div class="panel panel-info">
           <div class="panel-heading">
             <h3 class="panel-title">Statistikk</h3>
@@ -50,7 +57,7 @@
 
     <div class="row-fluid">
       <div class="col-sm-12">
-        <div class="alert alert-info text-center"">
+        <div class="alert alert-info text-center">
           <strong>OBS!</strong> Nettbestilling kommer snart!
         </div>
       </div>

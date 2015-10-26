@@ -18,14 +18,19 @@
   (or (env :button-token)
       (throw (Exception. "Missing BUTTON_TOKEN environment variable"))))
 
+(defn- pusher-url []
+  (or (env :pusher-url)
+      (throw (Exception. "Missing PUSHER_URL environment variable"))))
+
 (defn- web-port []
   (or (env :port)
       5000))
 
-(def system
-  (partial
-   {:db (db-spec)
+(defn system [what]
+  (case what
+    :db (db-spec)
     :slack-url (slack-url)
     :slack-token (slack-token)
     :web-port (web-port)
-    :button-token (button-token)}))
+    :button-token (button-token)
+    :pusher-url (pusher-url)))
