@@ -51,7 +51,7 @@
          [:th "Antall"]]]
        [:tbody
         (for [[line description] stat-lines]
-          [:tr
+          [:tr {:key line}
            [:td description]
            [:td (get stats line)]])]])
     (loading-gif)))
