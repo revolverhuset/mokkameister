@@ -15,6 +15,7 @@
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/java.jdbc "0.3.7"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
+                 [com.pusher/pusher-http-java "0.9.3"]
                  [reagent "0.5.1"]
                  [ring-cors "0.1.7"]
                  [ring/ring-defaults "0.1.5"]
