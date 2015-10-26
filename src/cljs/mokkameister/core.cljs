@@ -1,6 +1,8 @@
 (ns mokkameister.core
+  (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [reagent.core :as reagent :refer [atom]]
-            [ajax.core :refer [GET POST]]))
+            [ajax.core :refer [GET POST]]
+            [cljs.core.async :as async :refer [timeout <!]]))
 
 (enable-console-print!)
 
@@ -30,10 +32,15 @@
   [:div.loading
    [:img {:src "img/loading.gif"}]])
 
-(defn status []
-  (if-let [time (get-in @state [:latest :regular :created])]
-    [:div (str "Sist brygg blei laga " (friendly-time-ago time) ".")]
-    (loading-gif)))
+(defn last-brew []
+  (let [timer (atom 0)]
+    (fn []
+      (go (<! (timeout 5000))
+          (swap! timer inc))
+      @timer ;; Ugly... deref atom to re-eval component.. :(
+      (if-let [time (get-in @state [:latest :regular :created])]
+        [:div (str "Sist brygg blei laga " (friendly-time-ago time) ".")]
+        (loading-gif)))))
 
 (defn stats []
   (if-let [stats (get-in @state [:stats :regular])]
@@ -57,6 +64,6 @@
     (loading-gif)))
 
 (do
-  (reagent/render-component [status] (.getElementById js/document "status"))
+  (reagent/render-component [last-brew] (.getElementById js/document "last-brew"))
   (reagent/render-component [stats] (.getElementById js/document "stats"))
   (println "Running!"))
