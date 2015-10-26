@@ -75,7 +75,7 @@
   (swap! state #(assoc % :alarm message))
   (fetch-data!)
   (play-siren!)
-  (go (<! (timeout 30000))
+  (go (<! (timeout (* 2 60 1000)))
       (swap! state #(dissoc % :alarm))))
 
 (defn subscribe-pusher! []
