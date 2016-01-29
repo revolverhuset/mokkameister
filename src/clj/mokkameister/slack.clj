@@ -7,7 +7,7 @@
   "Send message to slack. Optional arguments: channel, emoji, username."
   [message & {:keys [channel username emoji]
               :or {channel  "#testroompleaseignore"
-                   emoji    ":coffee:"
+                   emoji    ":java:"
                    username "Mokkameister 9000"}}]
   (let [payload {:text       message
                  :username   username
