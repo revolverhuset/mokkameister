@@ -22,12 +22,36 @@
   (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar!"
           (msg-coffee-count today-count "") slack-user brew-time))
 
+(def ^:private flat-rand (comp rand-nth flatten))
+
+(defn- train [a b]
+  (let [locomotive (flat-rand [(repeat 8 ":steam_locomotive:")
+                               (repeat 2 ":bybane2:")
+                               (repeat 1 ":train:")
+                               (repeat 1 ":horse:")])
+        ending (flat-rand [(repeat 8 ":dash:")
+                           (repeat 2 nil)
+                           (repeat 1 ":exclamation:")])]
+    (str locomotive a b a b a b a ending)))
+
 (defn- coffee-message-finished []
-  ":steam_locomotive::coffee::coffee::coffee::coffee::coffee::coffee::dash:")
+  (flat-rand
+   [(repeat 2 (train ":coffee:" ":coffee:"))
+    (repeat 3 (train ":coffee:" ":heart:"))
+    (train ":coffeealarm:" ":coffeealarm:")
+    (train ":nespresso:" ":ali:")
+    (train ":ali:" ":gruff:")
+    (train ":coffee:" ":syringe:")
+    (train ":coffee:" ":mushroom:")
+    (train ":coffee:" ":coffeepot:")
+    (train ":coffee:" ":coffeealarm:")
+    ":steam_locomotive::coffee::coffee::running::running::running::dash:"
+    "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
+    "Det er kaffi å få på kjøken!"
+    "KEEP CALM THE COFFEE IS READY!"]))
 
 (defn- coffee-message-instant [{:keys [slack-user]}]
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" slack-user))
-
 
 (defmulti handle-slack-coffee :coffee-type)
 
