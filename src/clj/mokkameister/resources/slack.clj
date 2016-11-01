@@ -23,7 +23,7 @@
           (msg-coffee-count today-count "") slack-user brew-time))
 
 (defn- coffee-message-finished []
-  (format "Det er kaffi å få på kjøken!"))
+  ":steam_locomotive::coffee::coffee::coffee::coffee::coffee::coffee::dash:")
 
 (defn- coffee-message-instant [{:keys [slack-user]}]
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" slack-user))
