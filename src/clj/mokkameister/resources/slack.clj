@@ -67,7 +67,7 @@
     (persist-brew! event)
     (pusher/push! "coffee" "coffee" now-msg)
     (slack/notify (str now-msg " - " mokkameister-link) :channel channel)
-    (slack/delayed-notify time-ms (str later-msg " - " mokkameister-link) :channel channel)))
+    (slack/delayed-notify time-ms later-msg :channel channel)))
 
 (defn parse-slack-coffee-event [{:keys [channel_id text user_name]}]
   (let [event {:channel    channel_id
