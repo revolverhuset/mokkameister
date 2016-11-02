@@ -61,13 +61,18 @@
     (slack/notify msg :channel channel)))
 
 (defmethod handle-slack-coffee :regular [{:keys [channel time-ms] :as event}]
-  (let [today-count (get-in (brew-stats) [:regular :today])
+  (let [stats       (brew-stats)
+        today-count (get-in stats [:regular :today])
+        total-count (get-in stats [:regular :total])
         now-msg     (coffee-message-starting event today-count)
         later-msg   (coffee-message-finished)]
     (persist-brew! event)
     (pusher/push! "coffee" "coffee" now-msg)
     (slack/notify (str now-msg " - " mokkameister-link) :channel channel)
-    (slack/delayed-notify time-ms later-msg :channel channel)))
+    (slack/delayed-notify time-ms later-msg :channel channel)
+    (if (= total-count 999)
+      (slack/delayed-notify (+ time-ms 1000) "http://gph.is/2cTHbu3" :channel channel)
+      (slack/delayed-notify (+ time-ms 1500) "Dette var brygg nr 1000! :tada::confetti_ball::coffee:" :channel channel))))
 
 (defn parse-slack-coffee-event [{:keys [channel_id text user_name]}]
   (let [event {:channel    channel_id
