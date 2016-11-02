@@ -70,7 +70,7 @@
     (pusher/push! "coffee" "coffee" now-msg)
     (slack/notify (str now-msg " - " mokkameister-link) :channel channel)
     (slack/delayed-notify time-ms later-msg :channel channel)
-    (if (= total-count 999)
+    (when (= total-count 999)
       (slack/delayed-notify (+ time-ms 1000) "http://gph.is/2cTHbu3" :channel channel)
       (slack/delayed-notify (+ time-ms 1500) "Dette var brygg nr 1000! :tada::confetti_ball::coffee:" :channel channel))))
 
