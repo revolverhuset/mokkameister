@@ -13,11 +13,11 @@
              (prn "New state:", new)))
 
 (defn- fetch-data! []
-  (GET "/status"
+  (GET "status"
        {:response-format :json
         :keywords? true
         :handler (fn [data] (swap! state #(merge % data)))})
-  (GET "/stats"
+  (GET "stats"
        {:response-format :json
         :keywords? true
         :handler (fn [data] (swap! state #(assoc % :stats data)))}))
