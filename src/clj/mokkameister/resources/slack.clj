@@ -45,6 +45,9 @@
     (train ":coffee:" ":mushroom:")
     (train ":coffee:" ":coffeepot:")
     (train ":coffee:" ":coffeealarm:")
+    (train ":coffee:" ":hocho:")
+    (train ":coffee:" ":timwendelboe:")
+    (train ":coffee:" ":jan-richter:")
     ":steam_locomotive::coffee::coffee::running::running::running::dash:"
     "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
     "Det er kaffi å få på kjøken!"
