@@ -51,7 +51,8 @@
     ":steam_locomotive::coffee::coffee::running::running::running::dash:"
     "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
     "Det er kaffi å få på kjøken!"
-    "KEEP CALM THE COFFEE IS READY!"]))
+    "KEEP CALM THE COFFEE IS READY!"
+    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"]))
 
 (defn- coffee-message-instant [{:keys [slack-user]}]
   (format "Den sleipe robusta-knaskaren %s har lagt seg ein snar-kaffi :/" slack-user))
