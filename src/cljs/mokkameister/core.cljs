@@ -75,7 +75,8 @@
 (defn chart []
   (if-let [chart-data (get-in @state [:stats :month-stats])]
     (let [month-count (map :count chart-data)]
-      [:pre.chart (js/chart (clj->js month-count))])))
+      [:pre.chart (js/chart (clj->js month-count)
+                            (clj->js {:width 85}))])))
 
 (defn trigger-alarm! [message]
   (swap! state #(assoc % :alarm message))
