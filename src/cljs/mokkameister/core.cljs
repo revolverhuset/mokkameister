@@ -51,7 +51,7 @@
      [:strong.blink "ALARM! ALARM! "] message]))
 
 (defn stats []
-  (if-let [stats (get-in @state [:stats :regular])]
+  (if-let [stats (get-in @state [:stats :brews :regular])]
     (let [stat-lines {:today "I dag"
                       :yesterday "I går"
                       :thisweek "Denne veken"
@@ -70,6 +70,11 @@
            [:td description]
            [:td (get stats line)]])]])
     (loading-gif)))
+
+(defn chart []
+  (if-let [chart-data (get-in @state [:stats :month-stats])]
+    (let [month-count (map :count chart-data)]
+      [:pre.chart (js/chart (clj->js month-count))])))
 
 (defn trigger-alarm! [message]
   (swap! state #(assoc % :alarm message))
@@ -91,6 +96,7 @@
   (reagent/render-component [last-brew] (.getElementById js/document "last-brew"))
   (reagent/render-component [stats] (.getElementById js/document "stats"))
   (reagent/render-component [alarm] (.getElementById js/document "alarm"))
+  (reagent/render-component [chart] (.getElementById js/document "chart"))
   (fetch-data!)
   (subscribe-pusher!)
   (println "Running!"))

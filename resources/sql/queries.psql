@@ -31,6 +31,13 @@ WHERE "coffee-type" = 'instant'
 ORDER BY created DESC
 LIMIT 1
 
+-- name: month-stats
+SELECT count(*), DATE_TRUNC('month', created) as monthyear
+FROM brewings
+WHERE "coffee-type" = 'regular'
+GROUP BY monthyear
+ORDER BY monthyear;
+
 -- name: coffee-type-stats
 SELECT
     (SELECT count(*)
