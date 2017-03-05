@@ -66,6 +66,11 @@ SELECT
      WHERE created BETWEEN date_trunc('month', NOW() - INTERVAL '1 month')
      AND date_trunc('month', NOW())
      AND "coffee-type" = :coffee_type) as lastmonth,
+    (SELECT ROUND(AVG(permonth.count))
+     FROM (SELECT count(*), DATE_TRUNC('month', created) AS monthyear
+     FROM brewings WHERE "coffee-type" = :coffee_type AND
+          DATE_TRUNC('month', created) != DATE_TRUNC('month', CURRENT_DATE)
+     GROUP BY monthyear) as permonth) as avgmonth,
     (SELECT count(*)
      FROM brewings
      WHERE "coffee-type" = :coffee_type) as total

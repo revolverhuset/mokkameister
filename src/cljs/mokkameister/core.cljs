@@ -58,6 +58,7 @@
                       :lastweek "Forrige veke"
                       :thismonth "Denne månaden"
                       :lastmonth "Forrige månad"
+                      :avgmonth "Gj.snitt månad"
                       :total "Totalt"}]
       [:table.table
        [:thead
