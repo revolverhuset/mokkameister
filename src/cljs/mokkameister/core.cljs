@@ -75,7 +75,7 @@
 (def ^:private chart-titles
   (flatten [(repeat 2 "Brygg per monade")
             (repeat 8 "Brygg per månad")
-            (repeat 1 "Microdoser per månad")]))
+            (repeat 1 "Mikrodosar per månad")]))
 
 (defn chart [chart-data]
   (let [month-count (map :count chart-data)]
