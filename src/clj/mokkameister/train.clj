@@ -21,30 +21,30 @@
     (str front a b a b a b a back)))
 
 (defmacro pick-train
-  [trains]
+  [& trains]
   (rand-nth trains))
 
 (defn rand-train []
   (pick-train
-   [(train ":coffee:" ":coffee:")
-    (train ":coffee:" ":coffee:")
-    (train ":coffee:" ":heart:")
-    (train ":coffee:" ":heart:")
-    (train ":coffee:" ":heart:")
-    (train ":coffeealarm:" ":coffeealarm:")
-    (train ":nespresso:" ":ali:")
-    (train ":ali:" ":gruff:")
-    (train ":coffee:" ":syringe:")
-    (train ":coffee:" ":mushroom:")
-    (train ":coffee:" ":coffeepot:")
-    (train ":coffee:" ":coffeealarm:")
-    (train ":coffee:" ":hocho:")
-    (train ":coffee:" ":timwendelboe:")
-    (train ":coffee:" ":jan-richter:")
-    (train ":syringe:" ":hocho:")
-    ":steam_locomotive::coffee::coffee::running::running::running::dash:"
-    "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
-    "Det er kaffi å få på kjøken!"
-    "KEEP CALM THE COFFEE IS READY!"
-    "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
-    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"]))
+   (train ":coffee:" ":coffee:")
+   (train ":coffee:" ":coffee:")
+   (train ":coffee:" ":heart:")
+   (train ":coffee:" ":heart:")
+   (train ":coffee:" ":heart:")
+   (train ":coffeealarm:" ":coffeealarm:")
+   (train ":nespresso:" ":ali:")
+   (train ":ali:" ":gruff:")
+   (train ":coffee:" ":syringe:")
+   (train ":coffee:" ":mushroom:")
+   (train ":coffee:" ":coffeepot:")
+   (train ":coffee:" ":coffeealarm:")
+   (train ":coffee:" ":hocho:")
+   (train ":coffee:" ":timwendelboe:")
+   (train ":coffee:" ":jan-richter:")
+   (train ":syringe:" ":hocho:")
+   ":steam_locomotive::coffee::coffee::running::running::running::dash:"
+   "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
+   "Det er kaffi å få på kjøken!"
+   "KEEP CALM THE COFFEE IS READY!"
+   "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
+   "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"))
