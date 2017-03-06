@@ -5,7 +5,9 @@
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
-             [util :refer [parse-int]]]
+             [util :refer [parse-int]]
+             [random :refer [rand-nth-weighted]]
+             [train :refer [train]]]
             [mokkameister.db.persistence :refer [brew-stats persist-brew!]]))
 
 (def ^:private msg-coffee-count
@@ -23,16 +25,6 @@
           (msg-coffee-count today-count "") slack-user brew-time))
 
 (def ^:private flat-rand (comp rand-nth flatten))
-
-(defn- train [a b]
-  (let [locomotive (flat-rand [(repeat 8 ":steam_locomotive:")
-                               (repeat 2 ":bybane2:")
-                               (repeat 1 ":train:")
-                               (repeat 1 ":horse:")])
-        ending (flat-rand [(repeat 8 ":dash:")
-                           (repeat 2 nil)
-                           (repeat 1 ":exclamation:")])]
-    (str locomotive a b a b a b a ending)))
 
 (defn- coffee-message-finished []
   (flat-rand
