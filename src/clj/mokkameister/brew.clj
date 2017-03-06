@@ -4,8 +4,6 @@
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
-             [util :refer [parse-int]]
-             [random :refer [rand-nth-weighted]]
              [train :refer [rand-train]]]
             [mokkameister.db.persistence :refer [brew-stats persist-brew!]]))
 
