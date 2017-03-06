@@ -16,7 +16,7 @@
    4 "Femte gong? "})
 
 (def ^:private mokkameister-link
-  "<https://revolverhuset.no/kaffi/|Mokkameister>")
+  "<https://revolverhuset.no/kaffi/|revolverhuset.no/kaffi>")
 
 (defn- coffee-message-starting [{:keys [slack-user brew-time]} today-count]
   (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar!"
