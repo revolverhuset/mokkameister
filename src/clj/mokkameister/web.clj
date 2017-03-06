@@ -6,6 +6,7 @@
              [coffee :refer [coffee-stats coffee-status]]
              [button :refer [coffee-button]]]
             [mokkameister.system :refer [system]]
+            [mokkameister.middleware :refer [ignore-trailing-slash]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware
              [cors :refer [wrap-cors]]
@@ -15,7 +16,6 @@
   (ANY "/status" [] coffee-status)
   (ANY "/stats" [] coffee-stats)
   (ANY "/coffee-button" [] coffee-button)
-  (ANY "/coffee-button/" [] coffee-button)
   (route/resources "/"))
 
 (defn wrap-dir-index [handler]
@@ -26,6 +26,7 @@
   (-> app
       (wrap-dir-index)
       (wrap-defaults api-defaults)
+      (ignore-trailing-slash)
       (wrap-cors :access-control-allow-origin [#".*"]
                  :access-control-allow-methods [:get :put :post :delete])))
 
