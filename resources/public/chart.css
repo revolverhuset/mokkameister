@@ -4,7 +4,7 @@
     color: rgb(255,255,255);
     font-size: 13px;
     line-height: 100%;
-    font-family: monospace;
+    font-family: "Monaco", monospace;
     /* width:640px; */
     /* padding:0; */
     word-wrap:normal;
