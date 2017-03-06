@@ -15,17 +15,22 @@
                               ":sparkles:" 2
                               ":exclamation:" 1})
 
-(defn train [a b]
+(defn- train [a b]
   (let [front (rand-nth-weighted locomotives)
         back  (rand-nth-weighted train-endings)]
     (str front a b a b a b a back)))
 
-(def ^:private flat-rand (comp rand-nth flatten))
+(defmacro pick-train
+  [trains]
+  (rand-nth trains))
 
 (defn rand-train []
-  (flat-rand
-   [(repeat 2 (train ":coffee:" ":coffee:"))
-    (repeat 3 (train ":coffee:" ":heart:"))
+  (pick-train
+   [(train ":coffee:" ":coffee:")
+    (train ":coffee:" ":coffee:")
+    (train ":coffee:" ":heart:")
+    (train ":coffee:" ":heart:")
+    (train ":coffee:" ":heart:")
     (train ":coffeealarm:" ":coffeealarm:")
     (train ":nespresso:" ":ali:")
     (train ":ali:" ":gruff:")
