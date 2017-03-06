@@ -1,6 +1,7 @@
 (ns mokkameister.core
   (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require [reagent.core :as reagent :refer [atom]]
+  (:require [mokkameister.random :refer [rand-nth-weighted]]
+            [reagent.core :as reagent :refer [atom]]
             [ajax.core :refer [GET POST]]
             [cljs.core.async :as async :refer [timeout <!]]))
 
@@ -72,10 +73,9 @@
            [:td (get stats line)]])]])
     (loading-gif)))
 
-(def ^:private chart-titles
-  (flatten [(repeat 2 "Brygg per monade")
-            (repeat 8 "Brygg per månad")
-            (repeat 1 "Mikrodosar per månad")]))
+(def ^:private chart-titles {"Brygg per monade" 2
+                             "Brygg per månad" 8
+                             "Mikrodosar per månad" 1})
 
 (defn chart [chart-data]
   (let [month-count (map :count chart-data)]
@@ -83,7 +83,7 @@
                           (clj->js {:width 85}))]))
 
 (defn chart-panel []
-  (let [title (rand-nth chart-titles)
+  (let [title (rand-nth-weighted chart-titles)
         chart-data (get-in @state [:stats :month-stats])]
     [:div.panel.panel-info
      [:div.panel-heading
