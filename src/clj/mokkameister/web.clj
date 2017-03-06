@@ -4,7 +4,8 @@
              [route :as route]]
             [mokkameister.resources
              [coffee :refer [coffee-stats coffee-status]]
-             [slack :refer [coffee-button slack-coffee]]]
+             [slack :refer [slack-coffee]]
+             [button :refer [coffee-button]]]
             [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware
