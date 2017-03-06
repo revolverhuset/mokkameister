@@ -4,7 +4,6 @@
              [route :as route]]
             [mokkameister.resources
              [coffee :refer [coffee-stats coffee-status]]
-             [slack :refer [slack-coffee]]
              [button :refer [coffee-button]]]
             [mokkameister.system :refer [system]]
             [ring.adapter.jetty :as jetty]
@@ -13,7 +12,6 @@
              [defaults :refer [api-defaults wrap-defaults]]]))
 
 (defroutes app
-  (ANY "/slack-coffee" [] slack-coffee)
   (ANY "/status" [] coffee-status)
   (ANY "/stats" [] coffee-stats)
   (ANY "/coffee-button" [] coffee-button)

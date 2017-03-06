@@ -1,6 +1,6 @@
 (ns mokkameister.resources.button
   (:require [liberator.core :refer [defresource]]
-            [mokkameister.resources.slack :refer [handle-slack-coffee]]
+            [mokkameister.brew :refer [start-brewing!]]
             [mokkameister.system :refer [system]]))
 
 (defn- valid-button-token? [ctx]
@@ -11,11 +11,9 @@
   ;; Just produce a faux slack /coffee event map for now..
   (let [event {:channel "#penthouse"
                :slack-user "nokon"
-               :time-ms (* 5 1000 60)
                :brew-time 5
                :coffee-type :regular}]
-    (prn event)
-    (handle-slack-coffee event))
+    (start-brewing! event))
   "OK")
 
 (defresource coffee-button
