@@ -41,4 +41,5 @@
     "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
     "Det er kaffi å få på kjøken!"
     "KEEP CALM THE COFFEE IS READY!"
+    "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
     "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"]))
