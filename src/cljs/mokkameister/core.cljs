@@ -73,17 +73,18 @@
            [:td (get stats line)]])]])
     (loading-gif)))
 
-(def ^:private chart-titles {"Brygg per monade" 2
-                             "Brygg per månad" 8
-                             "Mikrodosar per månad" 1})
-
 (defn chart [chart-data]
   (let [month-count (map :count chart-data)]
     [:pre.chart (js/chart (clj->js month-count)
                           (clj->js {:width 85}))]))
 
+(defn- chart-title []
+  (let [brew (rand-nth-weighted {"Brygg" 8, "Mikrodosar" 2, "Kaffidoktorar" 1})
+        month (rand-nth-weighted {"månad" 8, "monade" 2, "månefase" 1, "nymåne" 1})]
+    (str brew " per " month)))
+
 (defn chart-panel []
-  (let [title (rand-nth-weighted chart-titles)
+  (let [title (chart-title)
         chart-data (get-in @state [:stats :month-stats])]
     [:div.panel.panel-info
      [:div.panel-heading
