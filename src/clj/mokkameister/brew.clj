@@ -6,7 +6,7 @@
              [system :refer [system]]
              [util :refer [parse-int]]
              [random :refer [rand-nth-weighted]]
-             [train :refer [train]]]
+             [train :refer [rand-train]]]
             [mokkameister.db.persistence :refer [brew-stats persist-brew!]]))
 
 (def ^:private channel "#penthouse")
@@ -25,28 +25,8 @@
   (format "God nyhendnad folket! %s%s starta nett traktaren, kaffi om %d minuttar!"
           (msg-coffee-count today-count "") slack-user brew-time))
 
-(def ^:private flat-rand (comp rand-nth flatten))
-
 (defn- coffee-message-finished []
-  (flat-rand
-   [(repeat 2 (train ":coffee:" ":coffee:"))
-    (repeat 3 (train ":coffee:" ":heart:"))
-    (train ":coffeealarm:" ":coffeealarm:")
-    (train ":nespresso:" ":ali:")
-    (train ":ali:" ":gruff:")
-    (train ":coffee:" ":syringe:")
-    (train ":coffee:" ":mushroom:")
-    (train ":coffee:" ":coffeepot:")
-    (train ":coffee:" ":coffeealarm:")
-    (train ":coffee:" ":hocho:")
-    (train ":coffee:" ":timwendelboe:")
-    (train ":coffee:" ":jan-richter:")
-    (train ":syringe:" ":hocho:")
-    ":steam_locomotive::coffee::coffee::running::running::running::dash:"
-    "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
-    "Det er kaffi å få på kjøken!"
-    "KEEP CALM THE COFFEE IS READY!"
-    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"]))
+  (rand-train))
 
 (defn- notify-start! [brew]
   (let [stats        (brew-stats)

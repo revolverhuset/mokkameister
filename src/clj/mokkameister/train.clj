@@ -19,3 +19,26 @@
   (let [front (rand-nth-weighted locomotives)
         back  (rand-nth-weighted train-endings)]
     (str front a b a b a b a back)))
+
+(def ^:private flat-rand (comp rand-nth flatten))
+
+(defn rand-train []
+  (flat-rand
+   [(repeat 2 (train ":coffee:" ":coffee:"))
+    (repeat 3 (train ":coffee:" ":heart:"))
+    (train ":coffeealarm:" ":coffeealarm:")
+    (train ":nespresso:" ":ali:")
+    (train ":ali:" ":gruff:")
+    (train ":coffee:" ":syringe:")
+    (train ":coffee:" ":mushroom:")
+    (train ":coffee:" ":coffeepot:")
+    (train ":coffee:" ":coffeealarm:")
+    (train ":coffee:" ":hocho:")
+    (train ":coffee:" ":timwendelboe:")
+    (train ":coffee:" ":jan-richter:")
+    (train ":syringe:" ":hocho:")
+    ":steam_locomotive::coffee::coffee::running::running::running::dash:"
+    "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
+    "Det er kaffi å få på kjøken!"
+    "KEEP CALM THE COFFEE IS READY!"
+    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"]))
