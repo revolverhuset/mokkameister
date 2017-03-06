@@ -54,7 +54,8 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
-    (slack/notify msg :channel channel)))
+    (slack/notify msg :channel channel)
+    (pusher/push! "coffee" "coffee" starting-msg)))
 
 (defn- notify-done! [brew]
   (let [msg (coffee-message-finished)]
