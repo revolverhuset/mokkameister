@@ -71,6 +71,6 @@
 
 (defn start-brewing! [in-brew]
   (let [brew     (persist-brew! in-brew)
-        delay-ms (* (:brew-time brew) 60 50)]
+        delay-ms (* (:brew-time brew) 60 1000)]
     (notify-start! brew)
     (delayed! delay-ms (finish-brewing! brew))))
