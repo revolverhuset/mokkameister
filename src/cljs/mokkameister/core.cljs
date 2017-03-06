@@ -72,12 +72,25 @@
            [:td (get stats line)]])]])
     (loading-gif)))
 
-(defn chart []
-  (if-let [chart-data (get-in @state [:stats :month-stats])]
-    (let [month-count (map :count chart-data)]
-      [:pre.chart (js/chart (clj->js month-count)
-                            (clj->js {:width 85}))])
-    (loading-gif)))
+(def ^:private chart-titles
+  (flatten [(repeat 2 "Brygg per monade")
+            (repeat 8 "Brygg per månad")
+            (repeat 1 "Microdoser per månad")]))
+
+(defn chart [chart-data]
+  (let [month-count (map :count chart-data)]
+    [:pre.chart (js/chart (clj->js month-count)
+                          (clj->js {:width 85}))]))
+
+(defn chart-panel []
+  (let [title (rand-nth chart-titles)
+        chart-data (get-in @state [:stats :month-stats])]
+    [:div.panel.panel-info
+     [:div.panel-heading
+      [:h3.panel-title title]]
+     [:div.panel-body (if chart-data
+                        (chart chart-data)
+                        (loading-gif))]]))
 
 (defn trigger-alarm! [message]
   (swap! state #(assoc % :alarm message))
@@ -99,7 +112,7 @@
   (reagent/render-component [last-brew] (.getElementById js/document "last-brew"))
   (reagent/render-component [stats] (.getElementById js/document "stats"))
   (reagent/render-component [alarm] (.getElementById js/document "alarm"))
-  (reagent/render-component [chart] (.getElementById js/document "chart"))
+  (reagent/render-component [chart-panel] (.getElementById js/document "chart-panel"))
   (fetch-data!)
   (subscribe-pusher!)
   (println "Running!"))
