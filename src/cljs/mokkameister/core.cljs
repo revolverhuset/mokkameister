@@ -3,7 +3,8 @@
   (:require [mokkameister.random :refer [rand-nth-weighted]]
             [reagent.core :as reagent :refer [atom]]
             [ajax.core :refer [GET POST]]
-            [cljs.core.async :as async :refer [timeout <!]]))
+            [cljs.core.async :as async :refer [timeout <!]]
+            [clojure.string :as string :refer [join]]))
 
 (enable-console-print!)
 
@@ -80,8 +81,9 @@
 
 (defn- chart-title []
   (let [brew (rand-nth-weighted {"Brygg" 8, "Mikrodosar" 2, "Kaffidoktorar" 1})
+        per (rand-nth-weighted {"per" 2, "kvar" 1})
         month (rand-nth-weighted {"månad" 8, "monade" 2, "månefase" 1, "nymåne" 1})]
-    (str brew " per " month)))
+    (join " " [brew per month])))
 
 (defn chart-panel []
   (let [title (chart-title)
