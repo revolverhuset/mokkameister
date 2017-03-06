@@ -8,12 +8,11 @@
     (= token (system :button-token))))
 
 (defn- handle-button-post [ctx]
-  ;; Just produce a faux slack /coffee event map for now..
-  (let [event {:channel "#penthouse"
-               :slack-user "nokon"
-               :brew-time 5
-               :coffee-type :regular}]
-    (start-brewing! event))
+  (let [brew {:channel "#penthouse"
+              :slack-user "nokon"
+              :brew-time 5
+              :coffee-type :regular}]
+    (start-brewing! brew))
   "OK")
 
 (defresource coffee-button
