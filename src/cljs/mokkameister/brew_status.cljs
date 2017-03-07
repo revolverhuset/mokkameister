@@ -36,7 +36,7 @@
 (defn- fresh-brew [brew]
   [:p.lead.alert.alert-success {:role "alert"}
    [:strong.blink "Fersk kaffi!"]
-   " Nybrygga kaffi paa kjøken.."])
+   " Brygga " (friendly-brew-relative-time brew) "."])
 
 (defn- last-brew [brew]
   [:p.lead
