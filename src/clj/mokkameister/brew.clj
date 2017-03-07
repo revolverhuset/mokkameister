@@ -33,15 +33,15 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
-    (slack/notify msg :channel channel)
-    (pusher/push! "coffee" "coffee" starting-msg)))
+    (slack/notify msg :channel channel)))
 
 (defn- notify-done! [brew]
   (let [msg (coffee-message-finished)]
     (slack/notify msg :channel channel)))
 
 (defn- finish-brewing! [brew]
-  (notify-done! brew))
+  (notify-done! brew)
+  (pusher/push! "coffee" "brewing" "finish"))
 
 (defmacro delayed!
   "Execute body after time-ms"
@@ -53,4 +53,5 @@
   (let [brew     (persist-brew! in-brew)
         delay-ms (* (:brew-time brew) 60 1000)]
     (notify-start! brew)
+    (pusher/push! "coffee" "brewing" "start")
     (delayed! delay-ms (finish-brewing! brew))))
