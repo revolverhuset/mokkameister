@@ -14,7 +14,8 @@
    2 "No er det snart kaffi igjen, "
    3 "Kaffi no igjen? "
    4 "Eg gir meg ende øve, fjerde kaffien i dag? "
-   5 "Femte gong? "})
+   5 "Femte gong? "
+   6 "clj.mokkameister.Exception: Coffee Overflow (brew.clj:18) "})
 
 (def ^:private mokkameister-link
   "<https://revolverhuset.no/kaffi/|revolverhuset.no/kaffi>")
