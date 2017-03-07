@@ -22,7 +22,9 @@
 
 (defmacro pick-train
   [& trains]
-  (rand-nth trains))
+  (letfn [(wrap-fn [sexp] `(fn [] ~sexp))]
+    (let [fn-trains (map wrap-fn trains)]
+      `((rand-nth [~@fn-trains])))))
 
 (defn rand-train []
   (pick-train
