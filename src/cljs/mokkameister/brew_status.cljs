@@ -1,12 +1,14 @@
 (ns mokkameister.brew-status
   (:require [mokkameister.loading :refer [loading-gif]]))
 
+(def ^:private fresh-coffee-minutes 5)
+
 (defn- fresh-brew? [brew]
   (let [duration (:brew-time brew)
         start    (:created brew)]
     (-> (js/moment start)
         (.add duration "m")
-        (.add 2 "m")
+        (.add fresh-coffee-minutes "m")
         (.isAfter (js/moment)))))
 
 (defn- isbrewing? [brew]
