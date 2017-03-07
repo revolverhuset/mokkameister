@@ -18,3 +18,9 @@
       (if (>= weight i)
         choice
         (recur (- i weight) remaining)))))
+
+(defmacro rand-sexp
+  "Select and run random s-expression"
+  [& sexps]
+  (letfn [(wrap-fn [sexp] `(fn [] ~sexp))]
+    `((rand-nth [~@(map wrap-fn sexps)]))))

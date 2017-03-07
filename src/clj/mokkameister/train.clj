@@ -1,5 +1,5 @@
 (ns mokkameister.train
-  (:require [mokkameister.random :refer [rand-nth-weighted]]))
+  (:require [mokkameister.random :refer [rand-nth-weighted rand-sexp]]))
 
 (def ^:private locomotives {":steam_locomotive:" 9
                             ":bybane2:" 3
@@ -20,14 +20,8 @@
         back  (rand-nth-weighted train-endings)]
     (str front a b a b a b a back)))
 
-(defmacro pick-train
-  [& trains]
-  (letfn [(wrap-fn [sexp] `(fn [] ~sexp))]
-    (let [fn-trains (map wrap-fn trains)]
-      `((rand-nth [~@fn-trains])))))
-
 (defn rand-train []
-  (pick-train
+  (rand-sexp
    (train ":coffee:" ":coffee:")
    (train ":coffee:" ":coffee:")
    (train ":coffee:" ":heart:")
