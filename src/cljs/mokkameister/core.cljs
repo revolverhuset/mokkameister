@@ -1,12 +1,13 @@
 (ns mokkameister.core
   (:require-macros [cljs.core.async.macros :refer [go go-loop]])
-  (:require [mokkameister.random :refer [rand-nth-weighted]]
+  (:require [ajax.core :refer [GET POST]]
+            [cljs.core.async :as async :refer [timeout <!]]
+            [clojure.string :as string :refer [join]]
             [mokkameister.brew-status :refer [brew-status]]
             [mokkameister.loading :refer [loading-gif]]
-            [reagent.core :as reagent :refer [atom]]
-            [ajax.core :refer [GET POST]]
-            [cljs.core.async :as async :refer [timeout <!]]
-            [clojure.string :as string :refer [join]]))
+            [mokkameister.notification :as notification :refer [create-notification]]
+            [mokkameister.random :refer [rand-nth-weighted]]
+            [reagent.core :as reagent :refer [atom]]))
 
 (enable-console-print!)
 
@@ -28,7 +29,7 @@
         :handler (fn [data] (swap! state #(assoc % :stats data)))}))
 
 (defn brew-status-on-timer []
-  (let [brew (get-in @state [:latest])
+  (let [brew  (get-in @state [:latest])
         ticks @timer] ; deref timer forces eval
     (brew-status brew)))
 
@@ -60,8 +61,8 @@
                           (clj->js {:width 85}))]))
 
 (defn- chart-title []
-  (let [brew (rand-nth-weighted {"Brygg" 8, "Mikrodosar" 2, "Kaffidoktorar" 1})
-        per (rand-nth-weighted {"per" 2, "kvar" 1})
+  (let [brew  (rand-nth-weighted {"Brygg" 8, "Mikrodosar" 2, "Kaffidoktorar" 1})
+        per   (rand-nth-weighted {"per" 2, "kvar" 1})
         month (rand-nth-weighted {"månad" 8, "monade" 2, "månefase" 1, "nymåne" 1})]
     (join " " [brew per month])))
 
@@ -75,13 +76,19 @@
                         (chart chart-data)
                         (loading-gif))]]))
 
+(defn- handle-pusher-event! [event]
+  (fetch-data!)
+  (case (keyword event)
+    :start  (notification/notify-brew-starting!)
+    :finish (notification/notify-brew-finished!)))
+
 (defn subscribe-pusher! []
   (when-not (:pusher @state)
     (let [settings (js-obj "cluster" "eu",
                            "encrypted" true)
-          socket (new js/Pusher "74106d5bea6fc6c2ed86" settings)
-          channel (.subscribe socket "coffee")]
-      (.bind channel "brewing" (fn [_] (fetch-data!)))
+          socket   (new js/Pusher "74106d5bea6fc6c2ed86" settings)
+          channel  (.subscribe socket "coffee")]
+      (.bind channel "brewing" handle-pusher-event!)
       (swap! state #(assoc % :pusher socket)))))
 
 (defn start-timer! []
@@ -97,4 +104,5 @@
   (fetch-data!)
   (subscribe-pusher!)
   (start-timer!)
+  (notification/notification-request-permission!)
   (println "Running!"))
