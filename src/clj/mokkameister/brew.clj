@@ -39,7 +39,7 @@
   (let [msg (coffee-message-finished)]
     (slack/notify msg :channel channel)))
 
-(defn finish-brewing! [brew]
+(defn- finish-brewing! [brew]
   (notify-done! brew))
 
 (defmacro delayed!
