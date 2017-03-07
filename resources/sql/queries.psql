@@ -4,7 +4,7 @@ CREATE TABLE brewings (
        "slack-user" VARCHAR(128) NOT NULL,
        "brew-time" INTEGER NOT NULL,
        "coffee-type" VARCHAR(50) NOT NULL,
-       created TIMESTAMP NOT NULL DEFAULT (now() at time zone 'utc')
+       created TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 )
 
 -- name: drop-brewings-table!
