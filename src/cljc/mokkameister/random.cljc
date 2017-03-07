@@ -20,7 +20,7 @@
         (recur (- i weight) remaining)))))
 
 (defmacro rand-sexp
-  "Select and run random s-expression"
+  "Select random s-expression"
   [& sexps]
-  (letfn [(wrap-fn [sexp] `(fn [] ~sexp))]
-    `((rand-nth [~@(map wrap-fn sexps)]))))
+  `(case (rand-int ~(count sexps))
+     ~@(apply concat (map-indexed list sexps))))
