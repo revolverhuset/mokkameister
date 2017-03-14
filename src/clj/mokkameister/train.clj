@@ -12,6 +12,7 @@
 
 (def ^:private train-endings {":dash:" 8
                               "" 2
+                              ":afterburner:" 2
                               ":sparkles:" 2
                               ":exclamation:" 1})
 
