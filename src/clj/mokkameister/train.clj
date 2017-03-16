@@ -49,6 +49,7 @@
    (coffee-train ":badger:" ":mushroom:")
    (coffee-train ":coffeepot:" ":heart:")
    (coffee-train ":simply_overcaffeinated:" ":coffeespin:")
+   (coffee-train ":smoking:")
    (train ":coffeealarm:" ":coffeealarm:")
    (train ":nespresso:" ":ali:")
    (train ":ali:" ":gruff:")
