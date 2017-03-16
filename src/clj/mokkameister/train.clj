@@ -56,6 +56,7 @@
    (train-coffee :timwendelboe)
    (train-coffee :jan-richter)
    (train-coffee :scream)
+   (train-coffee :doctor)
    (train-coffee :smoking)
    (train-coffee :heavy_heart_exclamation_mark_ornament)
    (train-coffee :badger :mushroom)
