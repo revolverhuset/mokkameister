@@ -48,6 +48,7 @@
    (coffee-train ":heavy_heart_exclamation_mark_ornament:")
    (coffee-train ":badger:" ":mushroom:")
    (coffee-train ":coffeepot:" ":heart:")
+   (coffee-train ":simply_overcaffeinated:" ":coffeespin:")
    (train ":coffeealarm:" ":coffeealarm:")
    (train ":nespresso:" ":ali:")
    (train ":ali:" ":gruff:")
