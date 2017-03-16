@@ -21,21 +21,23 @@
 (defn- key->emoji [s]
   (str s ":"))
 
+(defn- train->emojis [t]
+  (->> (map key->emoji t)
+       (apply str)))
+
 (defn- train [& wagons]
-  (let [front  (key->emoji (rand-nth-weighted locomotives))
-        back   (key->emoji (rand-nth-weighted train-endings))
-        middle (->> (map key->emoji wagons)
-                    (cycle)
-                    (take num-wagons)
-                    (apply str))]
-    (str front middle back)))
+  (let [front  (rand-nth-weighted locomotives)
+        back   (rand-nth-weighted train-endings)
+        middle (take num-wagons (cycle wagons))]
+    (->> [front middle back]
+         (flatten)
+         (train->emojis))))
 
 (def ^:private train-coffee (partial train :coffee))
 
 (defn- train-custom [& wagons]
   (->> (cons :steam_locomotive wagons)
-       (map key->emoji)
-       (apply str)))
+       (train->emojis)))
 
 (defn rand-train []
   (rand-sexp
