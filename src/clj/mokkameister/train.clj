@@ -32,6 +32,11 @@
 
 (def ^:private coffee-train (partial train :coffee))
 
+(defn- train-custom [& wagons]
+  (->> (cons :steam_locomotive wagons)
+       (map key->emoji)
+       (apply str)))
+
 (defn rand-train []
   (rand-sexp
    (coffee-train)
@@ -60,10 +65,12 @@
    (train :nespresso :ali)
    (train :ali :gruff)
    (train :syringe :hocho)
-   ":steam_locomotive::coffee::coffee::running::running::running::dash:"
-   "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
+   (train-custom :coffee :coffee :running :running :running :dash)
+   (train-custom :sun_with_face :lollipop :sun_with_face
+                 :lollipop :sun_with_face :lollipop :rainbow)
+   (str "All aboard the coffee train!\n"
+        (train-custom :coffee :coffee :running :running :running :dash))
    "Det er kaffi å få på kjøken!"
    "KEEP CALM THE COFFEE IS READY!"
    "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
-   "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"
-   ":steam_locomotive::sun_with_face::lollipop::sun_with_face::lollipop::sun_with_face::lollipop::sun_with_face::rainbow:"))
+   "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"))
