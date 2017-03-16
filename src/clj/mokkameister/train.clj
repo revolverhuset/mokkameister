@@ -45,6 +45,7 @@
    (train ":coffee:" ":nuclear:")
    (train ":coffee:" ":timwendelboe:")
    (train ":coffee:" ":jan-richter:")
+   (train ":coffee:" ":scream:")
    (train ":syringe:" ":hocho:")
    (train ":coffee:" ":heavy_heart_exclamation_mark_ornament:")
    (train ":coffee:" ":badger:" ":mushroom:")
