@@ -16,10 +16,13 @@
                               ":sparkles:" 2
                               ":exclamation:" 1})
 
-(defn- train [a b]
-  (let [front (rand-nth-weighted locomotives)
-        back  (rand-nth-weighted train-endings)]
-    (str front a b a b a b a back)))
+(def ^:private num-wagons 7)
+
+(defn- train [& wagons]
+  (let [front  (rand-nth-weighted locomotives)
+        back   (rand-nth-weighted train-endings)
+        middle (apply str (take num-wagons (cycle wagons)))]
+    (str front middle back)))
 
 (defn rand-train []
   (rand-sexp
