@@ -47,6 +47,8 @@
    (train ":coffee:" ":jan-richter:")
    (train ":syringe:" ":hocho:")
    (train ":coffee:" ":heavy_heart_exclamation_mark_ornament:")
+   (train ":coffee:" ":badger:" ":mushroom:")
+   (train ":coffee:" ":coffeepot:" ":heart:")
    ":steam_locomotive::coffee::coffee::running::running::running::dash:"
    "All aboard the coffee train\n:steam_locomotive::coffee::coffee::running::running::running::dash:"
    "Det er kaffi å få på kjøken!"
