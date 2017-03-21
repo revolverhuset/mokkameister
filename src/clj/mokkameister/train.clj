@@ -13,6 +13,7 @@
 (def ^:private train-endings {:dash 8
                               :afterburner 2
                               :sparkles 2
+                              :sweat_drops 2
                               :exclamation 1
                               :rainbow 1})
 
@@ -74,6 +75,7 @@
    (train :nespresso :ali)
    (train :ali :gruff)
    (train :syringe :hocho)
+   (train :scream_cat :scream)
    (train-custom :coffee :coffee :running :running :running :dash)
    (train-custom :sun_with_face :lollipop :sun_with_face
                  :lollipop :sun_with_face :lollipop :rainbow)
