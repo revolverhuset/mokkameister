@@ -71,6 +71,7 @@
    (train-custom :coffee :coffee :running :running :running :dash)
    (train-custom :sun_with_face :lollipop :sun_with_face
                  :lollipop :sun_with_face :lollipop :rainbow)
+   ":tractor::cow2::cow::cow2::cow::cow2::cow::cow2::dash:"
    (str "All aboard the coffee train!\n"
         (train-custom :coffee :coffee :running :running :running :dash))
    "Det er kaffi å få på kjøken!"
