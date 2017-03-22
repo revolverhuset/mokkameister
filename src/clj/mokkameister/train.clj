@@ -15,6 +15,7 @@
                               :sparkles 2
                               :sweat_drops 2
                               :exclamation 1
+                              :runner 1
                               :rainbow 1})
 
 (def ^:private num-wagons 7)
@@ -67,6 +68,12 @@
    (train-coffee :battery)
    (train-coffee :bomb)
    (train-coffee :verynice)
+   (train-coffee :zap)
+   (train-coffee :cake)
+   (train-coffee :notes)
+   (train-coffee :fuelpump)
+   (train-coffee :alarm_clock)
+   (train-coffee :monkey_face :wrench)
    (train-coffee :heavy_heart_exclamation_mark_ornament)
    (train-coffee :badger :mushroom)
    (train-coffee :coffeepot :heart)
