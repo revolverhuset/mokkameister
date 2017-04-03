@@ -45,6 +45,7 @@
   (rand-sexp
    (train-coffee)
    (train-coffee)
+   (train-coffee)
    (train-coffee :heart)
    (train-coffee :heart)
    (train-coffee :heart)
@@ -73,6 +74,7 @@
    (train-coffee :notes)
    (train-coffee :fuelpump)
    (train-coffee :alarm_clock)
+   (train-coffee :punch)
    (train-coffee :monkey_face :wrench)
    (train-coffee :heavy_heart_exclamation_mark_ornament)
    (train-coffee :badger :mushroom)
@@ -86,6 +88,7 @@
    (train-custom :coffee :coffee :running :running :running :dash)
    (train-custom :sun_with_face :lollipop :sun_with_face :lollipop
                  :sun_with_face :lollipop :sun_with_face :rainbow)
+   ":bullettrain_front::coffee::scream_cat::coffee::scream_cat::afterburner::dash:"
    ":tractor::cow2::cow::cow2::cow::cow2::cow::cow2::dash:"
    (str "All aboard the coffee train!\n"
         (train-custom :coffee :coffee :running :running :running :dash))
