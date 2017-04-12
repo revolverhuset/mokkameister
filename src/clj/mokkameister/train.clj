@@ -95,4 +95,5 @@
    "Det er kaffi å få på kjøken!"
    "KEEP CALM THE COFFEE IS READY!"
    "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
-   "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"))
+   "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"
+   "COFFEES WILL CONTINUE UNTIL MORALE IMPROVES! :facepunch::coffee:"))
