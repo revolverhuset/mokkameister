@@ -54,6 +54,7 @@
    (train-coffee :syringe)
    (train-coffee :mushroom)
    (train-coffee :coffeepot)
+   (train-coffee :chemex)
    (train-coffee :coffeealarm)
    (train-coffee :hocho)
    (train-coffee :wrench)
