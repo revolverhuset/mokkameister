@@ -76,6 +76,8 @@
    (train-coffee :fuelpump)
    (train-coffee :alarm_clock)
    (train-coffee :punch)
+   (train-coffee :el_kanno)
+   (train-coffee :arrow_right :el_kanno)
    (train-coffee :monkey_face :wrench)
    (train-coffee :heavy_heart_exclamation_mark_ornament)
    (train-coffee :badger :mushroom)
