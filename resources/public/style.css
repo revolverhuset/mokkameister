@@ -39,12 +39,6 @@ body {
 }
 
 
-.hr {
-    display: block;
-    text-align: center;
-}
-
-
 blink, .blink {
   -webkit-animation: blink 1s step-end infinite;
   -moz-animation: blink 1s step-end infinite;
