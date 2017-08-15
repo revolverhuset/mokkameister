@@ -1,11 +1,13 @@
 (ns mokkameister.brew
   (:require [clojure.core.async :refer [<! go timeout]]
+            [clj-time.core :as t]
+            [clj-time.coerce :as tc]
             [mokkameister
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
              [train :refer [rand-train]]]
-            [mokkameister.db.persistence :refer [brew-stats persist-brew!]]))
+            [mokkameister.db.persistence :refer [brew-stats persist-brew! find-last-regular-coffee]]))
 
 (def ^:private channel "#penthouse")
 
@@ -49,9 +51,26 @@
   `(go (<! (timeout ~time-ms))
        ~@body))
 
-(defn start-brewing! [in-brew]
+(defn- currently-brewing? []
+  (when-let [last-brew (first (find-last-regular-coffee))]
+    (-> (:created last-brew)
+        (tc/from-sql-time)
+        (t/interval (t/now))
+        (t/in-minutes)
+        (< 2))))
+
+(defn- notify-already-brewing! []
+  (let [msg "Ro dykk ned! Kaffien kokar allereie!!1"]
+    (slack/notify msg :channel channel)))
+
+(defn- persist-and-notify-new-brew! [in-brew]
   (let [brew     (persist-brew! in-brew)
         delay-ms (* (:brew-time brew) 60 1000)]
     (notify-start! brew)
     (pusher/push! "coffee" "brewing" "start")
     (delayed! delay-ms (finish-brewing! brew))))
+
+(defn start-brewing! [in-brew]
+  (if (currently-brewing?)
+    (notify-already-brewing!)
+    (persist-and-notify-new-brew! in-brew)))
