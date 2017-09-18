@@ -8,6 +8,7 @@
                             :horse 2
                             :unicorn_face 1
                             :boar 1
+                            :bicyclist 1
                             :tractor 1})
 
 (def ^:private train-endings {:dash 8
