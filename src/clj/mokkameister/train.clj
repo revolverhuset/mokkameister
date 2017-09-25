@@ -77,6 +77,7 @@
    (train-coffee :notes)
    (train-coffee :fuelpump)
    (train-coffee :alarm_clock)
+   (train-coffee :sirene)
    (train-coffee :punch)
    (train-coffee :el_kanno)
    (train-coffee :arrow_right :el_kanno)
