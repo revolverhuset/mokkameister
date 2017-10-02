@@ -58,7 +58,8 @@
 (defn chart [chart-data]
   (let [month-count (map :count chart-data)]
     [:pre.chart (js/chart (clj->js month-count)
-                          (clj->js {:width 85}))]))
+                          (clj->js {:width 85
+                                    :pointChar "I"}))]))
 
 (defn- chart-title []
   (let [brew  (rand-nth-weighted {"Brygg" 8, "Mikrodosar" 2, "Kaffidoktorar" 1})
