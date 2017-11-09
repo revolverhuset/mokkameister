@@ -86,6 +86,7 @@
    (train-coffee :badger :mushroom)
    (train-coffee :coffeepot :heart)
    (train-coffee :simply_overcaffeinated :coffeespin)
+   (train :ffi :coffee)
    (train :blockchain)
    (train :coffeealarm)
    (train :nespresso :ali)
