@@ -107,4 +107,5 @@
    "M-m-m-m-m-microdosing! :syringe::syringe::syringe::exclamation:"
    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"
    "COFFEES WILL CONTINUE UNTIL MORALE IMPROVES! :facepunch::coffee:"
+   ":coffeealarm: BALLISTIC COFFEE TREAT INBOUD TO REVOLVERHUSET. SEEK IMMEDIATE COFFEE CUP. THIS IS NOT A DRILL. :coffeealarm:"
    ":steam_locomotive::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::dash:"))
