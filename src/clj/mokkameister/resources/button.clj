@@ -24,7 +24,7 @@
 
 (defresource coffee-button
   :available-media-types ["text/plain"]
-  :allowed-methods [:post]
+  :allowed-methods [:post :get]
   :authorized? valid-button-token?
   :post! handle-old-button-post
   :handle-ok handle-button-get)
