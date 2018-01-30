@@ -72,6 +72,7 @@
    (train-coffee :fingers_crossed)
    (train-coffee :battery)
    (train-coffee :bomb)
+   (train-coffee :iot)
    (train-coffee :verynice)
    (train-coffee :zap)
    (train-coffee :cake)
