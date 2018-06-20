@@ -3,6 +3,7 @@
             [clj-time.core :as t]
             [clj-time.coerce :as tc]
             [mokkameister
+             [matrix :as matrix]
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
@@ -48,10 +49,12 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
+    (matrix/notify msg)
     (slack/notify msg :channel channel)))
 
 (defn- notify-done! [brew]
   (let [msg (coffee-message-finished)]
+    (matrix/notify msg)
     (slack/notify msg :channel channel)))
 
 (defn- finish-brewing! [brew]
