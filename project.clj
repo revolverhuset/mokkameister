@@ -11,7 +11,7 @@
                  [compojure "1.1.8"]
                  [environ "1.0.1"]
                  [liberator "0.13"]
-                 [org.clojure/clojure "1.7.0"]
+                 [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.7.145" :scope "provided"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [org.clojure/java.jdbc "0.3.7"]
