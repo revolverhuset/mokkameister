@@ -13,7 +13,7 @@
                  [liberator "0.13"]
                  [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.7.145" :scope "provided"]
-                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [org.clojure/core.async "0.4.474"]
                  [org.clojure/java.jdbc "0.3.7"]
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
                  [reagent "0.5.1"]
