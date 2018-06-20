@@ -22,7 +22,7 @@
    6 "clj.mokkameister.Exception: Coffee Overflow (brew.clj:18) "})
 
 (def ^:private mokkameister-link
-  "<https://revolverhuset.no/kaffi/|revolverhuset.no/kaffi>")
+  "https://revolverhuset.no/kaffi/")
 
 (def ^:private brewing-equipment
   [["traktaren" 60]
