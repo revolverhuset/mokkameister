@@ -4,11 +4,11 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[cheshire "5.3.1"]
-                 [clj-http "1.1.2"]
+                 [clj-http "3.9.0"]
                  [clj-time "0.13.0"]
                  [cljs-ajax "0.5.1"]
                  [com.pusher/pusher-http-java "0.9.3"]
-                 [compojure "1.1.8"]
+                 [compojure "1.6.1"]
                  [environ "1.0.1"]
                  [liberator "0.13"]
                  [org.clojure/clojure "1.9.0"]
@@ -20,7 +20,7 @@
                  [ring-cors "0.1.7"]
                  [ring/ring-defaults "0.1.5"]
                  [ring/ring-devel "1.2.2"]
-                 [ring/ring-jetty-adapter "1.2.2"]
+                 [ring/ring-jetty-adapter "1.7.0-RC1"]
                  [yesql "0.5.1"]
                  [com.vdurmont/emoji-java "4.0.0"]]
 
