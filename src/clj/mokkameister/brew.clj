@@ -49,13 +49,11 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
-    (matrix/notify msg)
-    (slack/notify msg :channel channel)))
+    (matrix/notify msg)))
 
 (defn- notify-done! [brew]
   (let [msg (coffee-message-finished)]
-    (matrix/notify msg)
-    (slack/notify msg :channel channel)))
+    (matrix/notify msg)))
 
 (defn- finish-brewing! [brew]
   (notify-done! brew)
@@ -77,7 +75,7 @@
 
 (defn- notify-already-brewing! []
   (let [msg "Ro dykk ned! Kaffien kokar allereie!!1"]
-    (slack/notify msg :channel channel)))
+    (matrix/notify msg)))
 
 (defn- persist-and-notify-new-brew! [in-brew]
   (let [brew     (persist-brew! in-brew)
