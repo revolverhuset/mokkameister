@@ -33,10 +33,9 @@
    ["grutpresså" 5]
    ["kaffikokaren" 30]])
 
-(defn- coffee-message-starting [{:keys [slack-user brew-time]} today-count] 
-  (format "God nyhendnad folket! %s%s starta nett %s, kaffi om %d minuttar!"
+(defn- coffee-message-starting [{:keys [brew-time]} today-count]
+  (format "God nyhendnad folket! %sNokon starta nett %s, kaffi om %d minuttar!"
           (msg-coffee-count today-count "")
-          slack-user
           (rand-nth-weighted brewing-equipment)
           brew-time))
 
