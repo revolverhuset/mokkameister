@@ -81,6 +81,7 @@
                  :sun_with_face :lollipop :sun_with_face :rainbow)
    ":bullettrain_front::coffee::scream_cat::coffee::scream_cat::dash:"
    ":tractor::cow2::cow::cow2::cow::cow2::cow::cow2::dash:"
+   ":unicorn_face::coffee::tada::coffee::tada::coffee::tada::coffee::rainbow:"
    (str "All aboard the coffee train!\n"
         (train-custom :coffee :coffee :running :running :running :dash))
    "Det er kaffi å få på kjøken!"
