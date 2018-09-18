@@ -58,7 +58,7 @@
    (train-coffee :tada)
    (train-coffee :bacon)
    (train-coffee :scream)
-   (train-coffee :doctor)
+   (train-coffee :female_health_worker)
    (train-coffee :smoking)
    (train-coffee :fingers_crossed)
    (train-coffee :battery)
