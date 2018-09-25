@@ -60,7 +60,7 @@
    (train-coffee :scream)
    (train-coffee :female_health_worker)
    (train-coffee :smoking)
-   (train-coffee :fingers_crossed)
+   (train-coffee :hand_with_index_and_middle_fingers_crossed)
    (train-coffee :battery)
    (train-coffee :bomb)
    (train-coffee :zap)
