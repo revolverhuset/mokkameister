@@ -2,7 +2,7 @@
 
 Kaffe-bot til revolverhuset slack, samt backend for kaffemaskin/knapp.
 
-`master`-branch autodeployer til [revolverhuset.no/kaffi][mokkaheroku]
+`☕️`-branch autodeployer til [revolverhuset.no/kaffi][mokkaheroku]
 
 ![Mokkameister web](webui.png)
 
