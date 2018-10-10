@@ -71,7 +71,7 @@
    (train-coffee :rotating_light)
    (train-coffee :punch)
    (train-coffee :monkey_face :wrench)
-   (train-coffee :heavy_heart_exclamation_mark_ornament)
+   (train-coffee :exclamation_heart)
    (train-coffee :badger :mushroom)
    (train :heartbeat :heartpulse)
    (train :syringe :hocho)
