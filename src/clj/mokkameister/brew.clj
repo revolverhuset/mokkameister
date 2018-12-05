@@ -31,6 +31,7 @@
    ["nespressomaskina" 5]
    ["grutkokaren" 5]
    ["grutpresså" 5]
+   ["fluidumgeneratoren" 5]
    ["kaffikokaren" 30]])
 
 (defn- coffee-message-starting [{:keys [brew-time]} today-count]
