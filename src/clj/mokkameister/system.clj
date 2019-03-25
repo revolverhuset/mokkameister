@@ -22,6 +22,10 @@
   (or (env :pusher-url)
       (throw (Exception. "Missing PUSHER_URL environment variable"))))
 
+(defn- mqtt-uri []
+  (or (env :cloudmqtt-url)
+      (throw (Exception. "Missing CLOUDMQTT_URL environment variable"))))
+
 (defn- web-port []
   (or (env :port)
       5000))
@@ -44,6 +48,7 @@
     :matrix-username (matrix-username)
     :matrix-password (matrix-password)
     :matrix-room (matrix-room)
+    :mqtt-uri (mqtt-uri)
     :slack-url (slack-url)
     :slack-token (slack-token)
     :web-port (web-port)

@@ -4,6 +4,7 @@
             [clj-time.coerce :as tc]
             [mokkameister
              [matrix :as matrix]
+             [mqtt :as mqtt]
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
@@ -49,6 +50,7 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
+    (future (mqtt/trigger-alarm!))
     (matrix/notify msg)))
 
 (defn- notify-done! [brew]
