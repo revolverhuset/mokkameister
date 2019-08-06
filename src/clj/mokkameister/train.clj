@@ -8,7 +8,8 @@
                             :unicorn_face 1
                             :boar 1
                             :bicyclist 1
-                            :tractor 1})
+                            :tractor 1
+                            :ambulance 1})
 
 (def ^:private train-endings {:dash 8
                               :sparkles 2
