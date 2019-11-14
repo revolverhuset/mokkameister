@@ -24,7 +24,7 @@
                  [ring/ring-devel "1.2.2"]
                  [ring/ring-jetty-adapter "1.7.0-RC1"]
                  [yesql "0.5.1"]
-                 [com.vdurmont/emoji-java "4.0.0"]]
+                 [com.vdurmont/emoji-java "5.1.1"]]
 
   :plugins [[lein-environ "1.0.1"]
             [lein-ring "0.9.4"]
