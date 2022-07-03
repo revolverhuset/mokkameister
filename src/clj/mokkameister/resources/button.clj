@@ -9,11 +9,7 @@
     (= token (system :button-token))))
 
 (defn- handle-button [ctx]
-  (let [brew {:channel "#penthouse"
-              :slack-user "nokon"
-              :brew-time 5
-              :coffee-type :regular}]
-    (start-brewing! brew))
+  (start-brewing!)
   "OK")
 
 (defresource coffee-button
