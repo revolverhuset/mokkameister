@@ -46,4 +46,4 @@
                            (brew-finished? @history) (finish-brewing!)))))]
     (mh/subscribe conn {topic 0} on-receive)))
 
-(connect-and-process!)
+;; (connect-and-process!)

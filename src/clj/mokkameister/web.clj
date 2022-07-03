@@ -6,6 +6,7 @@
              [coffee :refer [coffee-stats coffee-status]]
              [button :refer [coffee-button]]]
             [mokkameister.system :refer [system]]
+            [mokkameister.mqtt :refer [connect-and-process!]]
             [mokkameister.middleware :refer [ignore-trailing-slash]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware
@@ -32,6 +33,7 @@
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (system :web-port)))]
+    (connect-and-process!)
     (jetty/run-jetty (wrap-middlewares #'app) {:port port :join? false})))
 
 ;; Lein ring handler
