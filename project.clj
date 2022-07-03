@@ -13,6 +13,7 @@
                  [environ "1.0.1"]
                  [lambdaisland/uri "1.1.0"]
                  [liberator "0.15.3"]
+                 [nrepl "0.9.0"]
                  [org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.7.145" :scope "provided"]
                  [org.clojure/core.async "0.4.474"]
