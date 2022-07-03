@@ -4,7 +4,6 @@
             [clj-time.coerce :as tc]
             [mokkameister
              [matrix :as matrix]
-             [mqtt :as mqtt]
              [pusher :as pusher]
              [slack :as slack]
              [system :refer [system]]
@@ -12,7 +11,7 @@
              [random :refer [rand-nth-weighted]]]
             [mokkameister.db.persistence :refer [brew-stats persist-brew! find-last-regular-coffee]]))
 
-(def ^:private channel "#penthouse")
+(def ^:private channel "#bergen")
 
 (def ^:private msg-coffee-count
   {1 "Dagens fyrste kaffi! "
@@ -35,6 +34,12 @@
    ["fluidumgeneratoren" 5]
    ["kaffikokaren" 30]])
 
+(def ^:private dummy-brew ;; For stupid legacy reasons
+  {:channel channel
+   :slack-user "nokon"
+   :brew-time 5
+   :coffee-type :regular})
+
 (defn- coffee-message-starting [{:keys [brew-time]} today-count]
   (format "God nyhendnad folket! %sNokon starta nett %s, kaffi om %d minuttar!"
           (msg-coffee-count today-count "")
@@ -50,22 +55,11 @@
         total-count  (get-in stats [:regular :total])
         starting-msg (coffee-message-starting brew today-count)
         msg          (str starting-msg " - " mokkameister-link)]
-    (future (mqtt/trigger-alarm!))
-    (matrix/notify msg)))
+    (slack/notify msg :channel channel)))
 
-(defn- notify-done! [brew]
+(defn- notify-done! []
   (let [msg (coffee-message-finished)]
-    (matrix/notify msg)))
-
-(defn- finish-brewing! [brew]
-  (notify-done! brew)
-  (pusher/push! "coffee" "brewing" "finish"))
-
-(defmacro delayed!
-  "Execute body after time-ms"
-  [time-ms & body]
-  `(go (<! (timeout ~time-ms))
-       ~@body))
+    (slack/notify msg :channel channel)))
 
 (defn- currently-brewing? []
   (when-let [last-brew (first (find-last-regular-coffee))]
@@ -77,16 +71,18 @@
 
 (defn- notify-already-brewing! []
   (let [msg "Ro dykk ned! Kaffien kokar allereie!!1"]
-    (matrix/notify msg)))
+    (slack/notify msg :channel channel)))
 
-(defn- persist-and-notify-new-brew! [in-brew]
-  (let [brew     (persist-brew! in-brew)
-        delay-ms (* (:brew-time brew) 60 1000)]
+(defn- persist-and-notify-new-brew! []
+  (let [brew     (persist-brew! dummy-brew)]
     (notify-start! brew)
-    (pusher/push! "coffee" "brewing" "start")
-    (delayed! delay-ms (finish-brewing! brew))))
+    (pusher/push! "coffee" "brewing" "start")))
 
-(defn start-brewing! [in-brew]
+(defn start-brewing! []
   (if (currently-brewing?)
     (notify-already-brewing!)
-    (persist-and-notify-new-brew! in-brew)))
+    (persist-and-notify-new-brew!)))
+
+(defn finish-brewing! []
+  (notify-done!)
+  (pusher/push! "coffee" "brewing" "finish"))
