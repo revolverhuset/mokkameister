@@ -11,15 +11,13 @@
 (defn- started-percolating? [history]
   (->> history
        (take-last 3)
-       (map #(<= THRESHOLD_WATT %))
-       (vec)
+       (mapv #(<= THRESHOLD_WATT %))
        (= [false false true])))
 
 (defn- brew-finished? [history]
   (->> history
        (take-last 6)
-       (map #(<= THRESHOLD_WATT %))
-       (vec)
+       (mapv #(<= THRESHOLD_WATT %))
        (= [true true false false false false])))
 
 (defn- connect! []
