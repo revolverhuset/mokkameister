@@ -16,9 +16,9 @@
 
 (defn- brew-finished? [history]
   (->> history
-       (take-last 6)
+       (take-last 7)
        (mapv #(<= THRESHOLD_WATT %))
-       (= [true true false false false false])))
+       (= [true true false false false false false])))
 
 (defn- connect! []
   (let [
@@ -31,7 +31,7 @@
 
 (defn connect-and-process! []
   (let [conn (connect!)
-        history (atom (vec [0 0 0 0 0 0]))
+        history (atom (vec (repeat 10 0)))
         on-receive (fn [^String topic _ ^bytes payload]
                      (let [wattage (Float/parseFloat (String. payload "UTF-8"))]
                        (do
