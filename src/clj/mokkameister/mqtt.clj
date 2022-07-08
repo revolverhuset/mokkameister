@@ -15,10 +15,11 @@
        (= [false false true])))
 
 (defn- brew-finished? [history]
-  (->> history
-       (take-last 7)
-       (mapv #(<= THRESHOLD_WATT %))
-       (= [true true false false false false false])))
+  (let [pattern (vec (concat (repeat 2 true) (repeat 7 false)))]
+    (->> history
+         (take-last (count pattern))
+         (mapv #(<= THRESHOLD_WATT %))
+         (= pattern))))
 
 (defn- connect! []
   (let [
