@@ -25,9 +25,10 @@
   (let [
         my-uri (uri/uri (system :mqtt-uri))
         short-url (str "tcp://" (:host my-uri) ":" (:port my-uri))
-        creds {:username (:user my-uri)
-               :password (:password my-uri)}
-        conn (mh/connect short-url {:opts creds})]
+        opts {:username (:user my-uri)
+              :password (:password my-uri)
+              :auto-reconnect true}
+        conn (mh/connect short-url {:opts opts})]
     conn))
 
 (defn connect-and-process! []
