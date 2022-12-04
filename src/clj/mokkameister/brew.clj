@@ -61,10 +61,13 @@
   (let [msg (coffee-message-finished)]
     (slack/notify msg :channel channel)))
 
+(defn- parse-datetime [str]
+  (f/parse (f/formatter :mysql) str))
+
 (defn- currently-brewing? []
   (when-let [last-brew (first (find-last-regular-coffee))]
     (-> (:created last-brew)
-        (tc/from-sql-time)
+        (parse-datetime)
         (t/interval (t/now))
         (t/in-minutes)
         (< 2))))
