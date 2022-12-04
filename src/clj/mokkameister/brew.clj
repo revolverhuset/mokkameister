@@ -41,10 +41,9 @@
    :coffee-type :regular})
 
 (defn- coffee-message-starting [{:keys [brew-time]} today-count]
-  (format "God nyhendnad folket! %sNokon starta nett %s, kaffi om %d minuttar!"
+  (format "God nyhendnad folket! %sNokon starta nett %s, kaffi om få minuttar!"
           (msg-coffee-count today-count "")
-          (rand-nth-weighted brewing-equipment)
-          brew-time))
+          (rand-nth-weighted brewing-equipment)))
 
 (defn- coffee-message-finished []
   (rand-train))
