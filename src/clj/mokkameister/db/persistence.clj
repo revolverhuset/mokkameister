@@ -2,7 +2,7 @@
   (:require [mokkameister.system :refer [system]]
             [yesql.core :refer [defqueries]]))
 
-(defqueries "sql/queries.psql"
+(defqueries "sql/queries.sql"
   {:connection (system :db)})
 
 #_(defn recreate-tables! []
