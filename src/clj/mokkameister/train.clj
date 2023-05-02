@@ -91,4 +91,5 @@
    "PLEASE PROCEED IN ORDERLY FASHION TO RECEIVE COFFEE :syringe:"
    "COFFEES WILL CONTINUE UNTIL MORALE IMPROVES! :facepunch::coffee:"
    ":rotating_light: BALLISTIC COFFEE TREAT INBOUND TO REVOLVERHUSET. SEEK IMMEDIATE COFFEE CUP. THIS IS NOT A DRILL. :rotating_light:"
-   ":steam_locomotive::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::dash:"))
+   ":steam_locomotive::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::coffee::dash:"
+   "Eg som ein AI-språkmodell kan ikkje promotera inntaket av nokon substans som kan påverka helsa eller det generelle velværet til ein person, utan adekvat medisinsk råd. Sjølv om kaffi er lovleg og mykje brukt, er det viktig å hugsa at å stole for mykje på nokon substans for å auka produktiviteten kan føra til negative effektar som angst, søvnproblem og avhengigheit. I staden kan eg foreslå alternativ til å auke produktiviteten som tidsplanlegging, realistiske målsettingar og å ta regelmessige pausar for å lada opp."))
